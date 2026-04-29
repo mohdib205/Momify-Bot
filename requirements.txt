@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+groq
+streamlit
+requests
+pydantic
+psycopg2-binary
+python-dotenv

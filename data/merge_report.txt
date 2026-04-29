@@ -1,0 +1,22 @@
+
+BabyDoc Dataset Merge Report
+==============================
+Original WhatsApp records   : 493
+HealthCareMagic records     : 11711
+
+After merge:
+  From WhatsApp             : 491
+  From HealthCareMagic      : 0
+  Total                     : 491
+
+Skipped:
+  Incomplete original       : 2
+  Duplicates (HCM)          : 0
+  Low quality (HCM)         : 11711
+
+Output: data\babydoc_merged.json
+
+Note:
+  WhatsApp data = Indian medicines, Hinglish, verified by doctors
+  HealthCareMagic = Doctor-like tone, detailed English answers
+  Combined = best of both worlds

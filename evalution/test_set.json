@@ -1,0 +1,264 @@
+[
+
+
+  {
+    "type": "from_dataset",
+    "question": "how long breast milk can be stored",
+    "expected": "room temperature 2 to 4 hours, fridge 3 to 5 days"
+  },
+  {
+    "type": "from_dataset",
+    "question": "my milk supply is low how to increase",
+    "expected": "drink plenty of water before feeding, moringa or shatavari capsules, feed frequently"
+  },
+  {
+    "type": "from_dataset",
+    "question": "my baby is not latching what can I do",
+    "expected": "keep trying when baby is most hungry, try different positions, takes 7 to 10 days"
+  },
+  {
+    "type": "from_dataset",
+    "question": "I have breastfeeding problem my nipples got cracked and it hurts",
+    "expected": "apply own breast milk on cracked nipple, use nipple cream, ensure proper latch"
+  },
+  {
+    "type": "from_dataset",
+    "question": "how to clear blocked milk ducts",
+    "expected": "hot towel bath, warm compresses, feed from affected side"
+  },
+  {
+    "type": "from_dataset",
+    "question": "baby has fever what to give",
+    "expected": "paracetamol drops according to weight, sponge with room temperature water, recheck every 4 to 6 hours"
+  },
+  {
+    "type": "from_dataset",
+    "question": "my baby is constipated what to do",
+    "expected": "water after every feed, ghee or butter in diet, fiber rich purees, duphalac if needed"
+  },
+  {
+    "type": "from_dataset",
+    "question": "my baby has loose motions what to do",
+    "expected": "give sporolac sachet, ORS, keep baby hydrated"
+  },
+  {
+    "type": "from_dataset",
+    "question": "when can I start solids for my baby",
+    "expected": "start at 6 months with single ingredient purees, 1 to 3 teaspoons at a time"
+  },
+  {
+    "type": "from_dataset",
+    "question": "how many eggs should a breastfeeding mother eat",
+    "expected": "3 to 5 eggs per day"
+  },
+  {
+    "type": "from_dataset",
+    "question": "diaper rash treatment",
+    "expected": "diaper free time, coconut oil, sudocream or boroline"
+  },
+  {
+    "type": "from_dataset",
+    "question": "when does teething start in babies",
+    "expected": "4 to 6 months, do gum massage, use gumeez if baby too cranky"
+  },
+  {
+    "type": "from_dataset",
+    "question": "postpartum depression mein kya karna chahiye",
+    "expected": "roz bahar jaana park ya playground mein bahut madad karta hai"
+  },
+  {
+    "type": "from_dataset",
+    "question": "baby bottle accept nahi kar raha kya karein",
+    "expected": "7 to 10 din lagatar koshish karo, jab baby sabse zyada bhuka ho tab do"
+  },
+  {
+    "type": "from_dataset",
+    "question": "when should I introduce cow milk",
+    "expected": "only after 1 year, full fat, no added water"
+  },
+  {
+    "type": "from_dataset",
+    "question": "what supplements should breastfeeding mother take after c section",
+    "expected": "vitamin B complex, vitamin C, iron, calcium for 1 to 3 months"
+  },
+  {
+    "type": "from_dataset",
+    "question": "can I give dry fruits to 8 month old baby",
+    "expected": "yes in powdered form from 6 to 8 months, roast before powdering"
+  },
+  {
+    "type": "from_dataset",
+    "question": "breastfeeding se weight loss hoti hai kya",
+    "expected": "haan breastfeeding se bahut weight loss hoti hai"
+  },
+  {
+    "type": "from_dataset",
+    "question": "baby ki dry skin pe kya lagayein",
+    "expected": "vaseline ya emollient sone se pehle lagao, paani pilate raho"
+  },
+  {
+    "type": "from_dataset",
+    "question": "nasal congestion mein kya karein",
+    "expected": "nasal saline drops daalo, saline nebulisation karo, baby ko hydrated rakho"
+  },
+
+
+
+  {
+    "type": "paraphrased",
+    "question": "kitne ghante tak doodh bahar rakh sakte hain",
+    "expected": "room temperature pe 2 se 4 ghante tak rakh sakte hain"
+  },
+  {
+    "type": "paraphrased",
+    "question": "breast mein doodh kam aa raha hai kaise badhayein",
+    "expected": "feeding se 15 minute pehle paani piyo, moringa ya shatavari capsules lo, baar baar feed karo"
+  },
+  {
+    "type": "paraphrased",
+    "question": "my newborn refuses to latch on breast",
+    "expected": "try when baby is hungriest, different positions, consistent effort for 7 to 10 days"
+  },
+  {
+    "type": "paraphrased",
+    "question": "nipple crack ho gaya doodh pilane mein takleef ho rahi hai",
+    "expected": "apna doodh nipple pe lagao, nipple cream use karo, latching theek karo"
+  },
+  {
+    "type": "paraphrased",
+    "question": "baby ka temperature high hai kya dena chahiye",
+    "expected": "weight ke hisaab se paracetamol drops, normal paani se sponge karo, 4 se 6 ghante mein check karo"
+  },
+  {
+    "type": "paraphrased",
+    "question": "infant is not passing stool for 3 days",
+    "expected": "give water after every feed, add ghee or butter, fiber rich purees, duphalac if needed"
+  },
+  {
+    "type": "paraphrased",
+    "question": "chhote bachche ko solid food kab se shuru karein",
+    "expected": "6 mahine se shuru karo, ek cheez ki puree, 1 se 3 chammach se start karo"
+  },
+  {
+    "type": "paraphrased",
+    "question": "baby ke nappy area mein lali aa gayi hai",
+    "expected": "diaper free time do, coconut oil ya sudocream lagao"
+  },
+  {
+    "type": "paraphrased",
+    "question": "my baby is teething and very irritable what helps",
+    "expected": "massage gums firmly with finger, gumeez ointment or coconut oil on gums"
+  },
+  {
+    "type": "paraphrased",
+    "question": "mujhe depression ho raha hai delivery ke baad kya karoon",
+    "expected": "roz bahar niklo, park ya kisi jagah jaao, yeh sabse zyada madad karta hai"
+  },
+  {
+    "type": "paraphrased",
+    "question": "my baby has runny nose and sneezing a lot",
+    "expected": "nasal saline drops, saline nebulisation, keep baby hydrated"
+  },
+  {
+    "type": "paraphrased",
+    "question": "gaye ka doodh bachche ko kab se de sakte hain",
+    "expected": "1 saal ke baad, full fat, paani mat milao"
+  },
+  {
+    "type": "paraphrased",
+    "question": "after cesarean what vitamins should I take while nursing",
+    "expected": "vitamin B complex, vitamin C, iron, calcium for 1 to 3 months"
+  },
+  {
+    "type": "paraphrased",
+    "question": "infant skin is very flaky and rough what to apply",
+    "expected": "apply vaseline or thick emollient before sleep, keep baby well hydrated"
+  },
+  {
+    "type": "paraphrased",
+    "question": "bacha feeder se doodh nahi pita kya karein",
+    "expected": "7 se 10 din lagatar koshish karo, jab sabse zyada bhuka ho tab do"
+  },
+
+
+ 
+
+  {
+    "type": "new_related",
+    "question": "can I give ragi to my 6 month old baby",
+    "expected": "yes ragi can be introduced at 6 months in thin porridge form, it is a good source of iron and calcium"
+  },
+  {
+    "type": "new_related",
+    "question": "how much water should I give to a 7 month old baby",
+    "expected": "20 to 30 ml of water after every solid feed"
+  },
+  {
+    "type": "new_related",
+    "question": "kya breastfeeding ke dauran dental treatment safe hai",
+    "expected": "haan breastfeeding ke dauran root canal aur cleaning safe hai"
+  },
+  {
+    "type": "new_related",
+    "question": "how to burp a baby who falls asleep while breastfeeding",
+    "expected": "no need to forcefully burp, place on inclined surface for 15 to 20 minutes then lay flat"
+  },
+  {
+    "type": "new_related",
+    "question": "vitamin d drops kab tak dene chahiye",
+    "expected": "winters mein dhoop na mile to regularly do, ya weekly depura dose de sakte ho"
+  },
+  {
+    "type": "new_related",
+    "question": "can I give banana to my 7 month old",
+    "expected": "yes banana can be given to babies from 6 months, mash well before giving"
+  },
+  {
+    "type": "new_related",
+    "question": "baby ko colic hai kya karein",
+    "expected": "tummy massage karo, bicycle legs exercise karo, colicaid drops de sakte ho, garam kapde ki sikayi karo"
+  },
+  {
+    "type": "new_related",
+    "question": "normal weight gain for exclusively breastfed baby",
+    "expected": "400 to 500 grams per month, birth weight should double by 6 months"
+  },
+  {
+    "type": "new_related",
+    "question": "how to introduce eggs to 6 month old baby",
+    "expected": "start with well cooked egg yolk mashed, introduce slowly to check for allergy"
+  },
+  {
+    "type": "new_related",
+    "question": "baby ko iron drops kab se start karein",
+    "expected": "iron drops breastfed babies ko 4 se 6 mahine se shuru kar sakte hain doctor ki salah se"
+  },
+
+
+
+  {
+    "type": "edge_case",
+    "question": "my 2 month old baby has fever of 101",
+    "expected": "baby under 3 months with fever must go to doctor immediately, do not wait"
+  },
+  {
+    "type": "edge_case",
+    "question": "mere naye janam liye bachche ko bukhar hai",
+    "expected": "3 mahine se chote baby ko bukhar hai to turant doctor ke paas jaiye, ghar pe ilaaj mat karo"
+  },
+  {
+    "type": "edge_case",
+    "question": "stool mein blood aa raha hai baby ke",
+    "expected": "aaj hi pediatrician se milein, blood in stool serious ho sakta hai"
+  },
+  {
+    "type": "edge_case",
+    "question": "hi",
+    "expected": "bot should greet and ask how it can help, should not crash or give irrelevant answer"
+  },
+  {
+    "type": "edge_case",
+    "question": "my baby is not breathing properly and lips are turning blue",
+    "expected": "this is an emergency, go to hospital immediately"
+  }
+]

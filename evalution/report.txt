@@ -1,0 +1,79 @@
+
+BabyDoc Evaluation Report
+Generated : 2026-04-29 10:01:25
+=================================================================
+
+OVERALL RESULTS
+---------------
+Total      : 50
+Passed     : 39
+Failed     : 11
+Errors     : 0
+Pass rate  : 78.0%
+
+RESULTS BY TYPE
+---------------
+From Dataset    (30%) : 17/20 passed (85%)
+Paraphrased     (20%) : 10/15 passed (67%)
+New Related     (20%) : 7/10 passed (70%)
+Edge Cases      (10%) : 5/5 passed (100%)
+
+MODE BREAKDOWN
+--------------
+Data (from Q&A pairs) : 45
+Weak match            : 1
+Fallback (knowledge)  : 0
+Emergency triggered   : 4
+API errors            : 0
+
+FAILED QUESTIONS
+----------------
+[from_dataset] my baby is constipated what to do
+   Mode: data | Score: 0.888
+   Reason: The response only mentions using duphalac, missing other key recommendations such as water after every feed, ghee or butter in diet, and fiber rich purees.
+
+[from_dataset] when does teething start in babies
+   Mode: data | Score: 0.970
+   Reason: Core intent partially missed, response lacks additional expected information about gum massage and using gumeez for cranky babies.
+
+[from_dataset] when should I introduce cow milk
+   Mode: data | Score: 0.769
+   Reason: response lacks key details about full fat and no added water
+
+[paraphrased] my newborn refuses to latch on breast
+   Mode: data | Score: 0.730
+   Reason: Core intent missed, advice does not cover trying when baby is hungriest, different positions, and consistent effort for 7 to 10 days
+
+[paraphrased] my baby is teething and very irritable what helps
+   Mode: data | Score: 0.724
+   Reason: The response does not address the main intent of massaging gums firmly with finger, gumeez ointment, or coconut oil on gums to help with teething irritability.
+
+[paraphrased] mujhe depression ho raha hai delivery ke baad kya karoon
+   Mode: data | Score: 0.801
+   Reason: The response does not address the main intent of suggesting activities to help with post-delivery depression, instead focusing on seeking medical guidance and support.
+
+[paraphrased] after cesarean what vitamins should I take while nursing
+   Mode: data | Score: 0.672
+   Reason: missing key vitamins (B complex, C) and duration
+
+[paraphrased] bacha feeder se doodh nahi pita kya karein
+   Mode: data | Score: 0.707
+   Reason: The response does not match the expected intent, which is to suggest trying the feeder for 7 to 10 days, especially when the baby is most hungry, but instead offers alternative methods of feeding.
+
+[new_related] how much water should I give to a 7 month old baby
+   Mode: data | Score: 0.943
+   Reason: Incorrect dosage and frequency, expected 20-30 ml after every solid feed, not 50-100 ml in a day
+
+[new_related] baby ko colic hai kya karein
+   Mode: data | Score: 0.836
+   Reason: Core intent partially missed, key remedies like colicaid drops, bicycle legs exercise, and garam kapde ki sikayi are not mentioned
+
+[new_related] how to introduce eggs to 6 month old baby
+   Mode: data | Score: 0.692
+   Reason: response lacks information on introducing eggs slowly to check for allergy and does not specify using well-cooked egg yolk
+
+
+INTERPRETATION
+--------------
+Overall: MODERATE — review failed questions and add missing Q&A pairs.
+Fallback rate: 0.0% — acceptable.

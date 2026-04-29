@@ -1,0 +1,652 @@
+
+WhatsApp Dataset Cleaning Report v2
+=====================================
+Total input              : 493
+Kept                     : 334
+Removed                  : 159
+
+Removal reasons:
+  Platform artifacts     : 10
+  Useless answers        : 12
+  Vague questions        : 118
+  Answer is a question   : 4
+  References absent media: 2
+  Dangerous/wrong        : 13
+
+REMOVED RECORDS:
+
+[dangerous] Answer is for milk supply, not for feeding after bath
+  Q: Hi, my baby is 4 months and 24 days old. Can I breastfeed my baby immediately after bath, or should I wait for some time
+  A: Drink plenty of water before feeding the baby
+
+[dangerous] Vit D/iron is wrong treatment for cold/runny nose
+  Q: my 3 month daughter is having runny nose, watery eyes sometimes coughing also what to do
+  A: Start supplementing vit d 3 and iron
+
+[useless_answer] 
+  Q: My baby is 7 month old, can I breastfeed her in lying position now
+  A: Check the plus group please
+
+[vague_question] 
+  Q: I used it not working
+  A: Try taking your own breastmilk and apply of cracked nipple it will heal quickly.....worked for me like a magic
+
+[useless_answer] 
+  Q: Can u plz suggest a good economical electric pump
+  A: Search for it on insta or YouTube you'll find them easily
+
+[dangerous] Mother has constipation, answer is about baby latching — wrong
+  Q: Muje constipation h me baby ko apna milk feed krwa skti hon
+  A: Latch properly try different positions slightly and check
+
+[dangerous] Not an answer — doctor asking for more info
+  Q: during pregnancy my thyroid level was 5.871and I was taking 12.5 after delivery it's same 5.871 how much mg tablet shoul
+  A: Share the reports please
+
+[useless_answer] 
+  Q: Can we give ragi to. 6 to 7 months old baby ?
+  A: No specific answer found
+
+[useless_answer] 
+  Q: Do all mothers experience milk leakage?
+  A: No specific answer found
+
+[answer_is_question] 
+  Q: Meri baby bahut dubali hai
+  A: Birth weight and weight now ?
+
+[vague_question] 
+  Q: 2500 kg hui thi abhi 2800 hui hai
+  A: Ye weight sahi hai?? Dubara dekhiye zara
+
+[vague_question] 
+  Q: Please suggest any brand or capsule names
+  A: Can take any brand
+
+[dangerous] Incomplete answer with no actionable advice
+  Q: My LO (5 months 8 days) got his reducing substance positive and he’s EBF .. should I discontinue my BF n switch to diffe
+  A: Although not recommended unless utmost necessity
+
+[vague_question] 
+  Q: Powdee with milk? Or water
+  A: Do warm water compresses and take a warm water shower
+
+[vague_question] 
+  Q: Tablets come in 1000mg is that okay?
+  A: Not fda approved cant vouch for this
+
+[useless_answer] 
+  Q: Any tips on slowly introducing formula to an exclusively breastfed 8-week-old? Anyone currently combo feeding?
+  A: Please ask on paed group
+
+[vague_question] 
+  Q: Ok which company is best?
+  A: Try Phillips or Dr Browns
+
+[vague_question] 
+  Q: But when I push his stomach it seems like he is having stomach pain and gas issue and this is happening only when he is 
+  A: If this is what you have observed coukd be colic pain
+
+[dangerous] Blood test not relevant for milk blebs — mismatch
+  Q: any solution for milk blebs on nipples? cream or any other?
+  A: Get a blood test
+
+[dangerous] Blood test not indicated for night crying — mismatch
+  Q: Sir my baby boy is 9 month old and somedays he is crying in sleeping time at night and evening also, why is he doing tha
+  A: Get a blood test
+
+[vague_question] 
+  Q: Ok, but 24 hr ma maybe formula feed ke 2 feeder dyte hn otherwise BF py hy grap water & massage kia hy but still ni ke p
+  A: Then u can give suppository duphalac one once and see
+
+[answer_is_question] 
+  Q: Hi dr.. meri baby 20 days k hai. Breastfeeding
+  A: Peeing normal? Any cranky behaviour?
+
+[useless_answer] 
+  Q: My 7.5 month old baby is wakes up every night 6-7 times...he is having solids too...he wakes and demands for breastfeed.
+  A: Please tell such queries on other baby care group
+
+[useless_answer] 
+  Q: What can I do to make him sleep for longer
+  A: Please tell such queries on other baby care group
+
+[vague_question] 
+  Q: For how long this behaviour persists?????
+  A: Could be slight illness babies tend to shift to ebf during this
+
+[vague_question] 
+  Q: How much peanut butter to give?
+  A: If LO isn’t eating anything whole day (especially from 5-6 days) - umm may be 2 spoons
+
+[vague_question] 
+  Q: Minor pain is there
+  A: Do warm water compresses and take warm showers feed more from the affected side this will help
+
+[vague_question] 
+  Q: Illness in the sense?
+  A: Slight viral or cough cold etc
+
+[vague_question] 
+  Q: Without fever or symptom can viral still be there ?
+  A: Could be slight illness babies tend to shift to ebf during this
+
+[vague_question] 
+  Q: Doc my baby is 8 mn 4 days
+  A: Better to atleast take bf till 1.5 years
+
+[vague_question] 
+  Q: Ok but he is she is not eating while we forced to eat. He started vomit and do warm thing, wanting vomiting. Can we use 
+  A: No need to use any lotion better to start weaning by not feeding
+
+[vague_question] 
+  Q: Esa kyun ho rah hai dr
+  A: This is usually related to gases
+
+[vague_question] 
+  Q: my baby is 9.5 months old.
+  A: Try to give white butter or protrin rich diet before sleep at night
+
+[vague_question] 
+  Q: My lo is 9 mn 26 days
+  A: Yes you can increase
+
+[vague_question] 
+  Q: What can be done to stop the reaction?
+  A: You can give montas lc kids syp once before sleep
+
+[vague_question] 
+  Q: Age and diet ?
+  A: Almost sab kuch khilati hun
+
+[vague_question] 
+  Q: Fibre me kya khilau?
+  A: Ghee butter peanur butter animal fat
+
+[vague_question] 
+  Q: What was the bw of the baby?
+  A: She was a premie with low bw of 850gms.
+
+[vague_question] 
+  Q: Are u nebulising the kid ? Once or twice ?
+  A: Not really ..she is too cranky because of her teething and cold and cough, so I recorded every time in hurry
+
+[vague_question] 
+  Q: Baby active or lethargic?
+  A: She was active but today she is feeling lethargic
+
+[vague_question] 
+  Q: Hows the heat and humidity? Usually caused by that
+  A: Heat is a bit high in my area
+
+[vague_question] 
+  Q: Could it be due to hot water bath?
+  A: No this is usually due to high humidity and heat
+
+[vague_question] 
+  Q: How many days ?
+  A: We do daily massage woth that only
+
+[vague_question] 
+  Q: Please suggest what to give in diet also
+  A: Get checked by a fever ir gun if possible
+
+[vague_question] 
+  Q: Shall I overnight soak it and 2 hour soaking is enough
+  A: Whichever makes the puree smooth and remove the upper covering too if possible
+
+[vague_question] 
+  Q: Age and weight and any fever ?
+  A: He will be 8 months old in 3 days and weight 8.3kg
+
+[vague_question] 
+  Q: Since how many days the baby is having this
+  A: It's been 5 days and earlier it wasn't running nose but from last 2 days it's started
+
+[vague_question] 
+  Q: One more thing i have taken citrazine tablet at night should i stop that and take sinarest?
+  A: Either take pcm 650 and ctz
+
+[vague_question] 
+  Q: What needs to be applied on it
+  A: Try full fat without adding water and see for any issues after that
+
+[vague_question] 
+  Q: From what age should we give this ?
+  A: Avoid till 2 unless home grown
+
+[vague_question] 
+  Q: Ok and what else I can give to baby like in food
+  A: Give soupy and liquidy things more and if possible bevulise with saline
+
+[vague_question] 
+  Q: Dr. Which one should I use ?
+  A: Nasoway or nasoclear normal saline is good
+
+[vague_question] 
+  Q: Can we give kishmish to 6 months old if constipated ?
+  A: If taking other feeds properly then u can
+
+[vague_question] 
+  Q: Can I give dates milk in cold n cough to baby
+  A: Do icing and if no nausea and vomitting no need to worry
+
+[vague_question] 
+  Q: Sir/Mam, will this bump subside on its own..??
+  A: Give water by mixing in any thing plus give lemon water slightly for taste
+
+[vague_question] 
+  Q: N in semi solids what should I give
+  A: In puree form fox nut can be given avoid poha
+
+[platform_artifact] 
+  Q: And some rash on stomach image omitted
+  A: These are all insect bites apply ice and boroline or sudocream on the affected area
+
+[answer_is_question] 
+  Q: My 6.5 month old has not done potty from 3 days and as i noticed her night diaper the quantity of urine is also very les
+  A: How many times does the baby have solids ? Other than bf or ff does she take water other than that ?
+
+[vague_question] 
+  Q: And what to apply on this?
+  A: Apply ice in cloth and clean with water
+
+[platform_artifact] 
+  Q: Which one I should prefer? image omitted
+  A: Use ibugesic plus according to weight
+
+[vague_question] 
+  Q: Is it mosquito bite?
+  A: Yupp seems like some insect bite
+
+[vague_question] 
+  Q: Baby ko ratme kela khilane se cough hota hai ?
+  A: Not proven anywhere but some older people say so
+
+[vague_question] 
+  Q: Anyone else have this in house??
+  A: No no one is having this
+
+[vague_question] 
+  Q: Check and tell if reappeared
+  A: This happened 2 days back then it got normal
+
+[vague_question] 
+  Q: Cough with mucous ? And also are you giving nasal saline ?
+  A: Yes cough with mucous
+
+[vague_question] 
+  Q: Normally means the frequency of peeing?
+  A: Then nothing to worry about
+
+[vague_question] 
+  Q: Whats the weight of the baby ?
+  A: 4.250gm checked last Friday.
+
+[vague_question] 
+  Q: Can u plz give me some examples
+  A: Butter gheee peanut butter animal fats if possible
+
+[platform_artifact] 
+  Q: 5 month old baby foot area. What can i apply? image omitted
+  A: Do icing and apply sudocream or boroline
+
+[dangerous] What is 'yes you can'? No context — mismatch
+  Q: Baby 2 yr + Fever nahi hai but body Garam hai
+  A: Yes you can but keep it supervised
+
+[dangerous] Vague follow-up with no standalone meaning
+  Q: If any special care is to be taken?
+  A: Just apply ice on affected area and give pcm as prescribed
+
+[vague_question] 
+  Q: Like without putting the ear over the tummy?
+  A: No issues thats normal babies are a bit gassy and thats bowel sounds
+
+[vague_question] 
+  Q: When she poops is that hard or normal without any distress
+  A: Yes starts with very hard
+
+[vague_question] 
+  Q: Are you giving fibre and enough water to the baby with solifs ?
+  A: Fibre as in green veggies like cauliflower cabbage lettuce etc in diet
+
+[vague_question] 
+  Q: Ok cauliflower cabbage are gaseous i believe or they work fine for babies??
+  A: These are juat 4 examples i gave
+
+[useless_answer] 
+  Q: Do we have any chart or pattern of food we should give
+  A: Ill try to make one today
+
+[vague_question] 
+  Q: Like in food or meds ??
+  A: Give sporolac and ors
+
+[vague_question] 
+  Q: Is this normal? Medications incase if this recurring
+  A: If pee count has not decreased drastically it's alright
+
+[vague_question] 
+  Q: Pee count is normal, also is sporolac for baby different? Can you prescribe the pediatric medicine
+  A: Medications to be given only after decreased pee count normal sporolac sachet half 2 times a day is good
+
+[vague_question] 
+  Q: For how many days should i give these medicines?
+  A: 2-3 and then update
+
+[vague_question] 
+  Q: he also has runny nose any medicine for that?
+  A: Every 8 hrs apart you can give. Use nasal saline and feed the baby thats alright
+
+[platform_artifact] 
+  Q: Can I get diet chart for 4-1/2 year old boy. He is thin and weighs 15kg
+  A: kids diet chart .pdf • 3 pages document omitted. Do not give without veggie
+
+[platform_artifact] 
+  Q: Plz send diet chart for 13 months old baby
+  A: kids diet chart .pdf • 3 pages document omitted
+
+[platform_artifact] 
+  Q: How much quantity to given in nebulizer image omitted
+  A: There will be a mark on the container
+
+[dangerous] Answer is for postpartum mother nutrition, not cluster feeding advice
+  Q: What can be done while cluster feeding?
+  A: Drink a lot of water and take your supplements iron calcium and b complex daily
+
+[vague_question] 
+  Q: After how much time after I can feed her
+  A: Feed as early as the baby wants
+
+[dangerous] DANGEROUS: Newborn fever must go to doctor immediately — this answer is from different thread
+  Q: What should be done when new born 18 days old baby got fever?
+  A: Yes that will do for now but keep trying to give water by straw or sipper cups. After mid day feed. Supplement iron calc
+
+[vague_question] 
+  Q: Ok should I use it or not
+  A: Yes you should with iron
+
+[vague_question] 
+  Q: Any tym urine sample can be given??
+  A: Wash the dropper every time and close with the cap as using the same dropper might cause infections
+
+[vague_question] 
+  Q: 2 m baby chest feels congested, is taking less feeds and after feeds is removing sticky white fluid while burping in mor
+  A: Yes you can give
+
+[vague_question] 
+  Q: She is crying and refusing food not interested in eating
+  A: Let her do that for 3 days but do not give a single chocolate or snacks she will have to have something out of what u gi
+
+[vague_question] 
+  Q: Kya usko hum pila sakte hain
+  A: Wait till 2 yes unless seeing clear signs like excess drooling weightloss etc
+
+[vague_question] 
+  Q: Only during night does he vomit ? Or during day too episodes have happened?
+  A: At mornings there are couple of spit ups daily but not full blown vomitings
+
+[vague_question] 
+  Q: It is of green color and liquid , pls tell is this normal?
+  A: If peeing alright then do not worry
+
+[vague_question] 
+  Q: None of these are useful??
+  A: Not like that it has it issues like a lot of chemicals that may even harm
+
+[platform_artifact] 
+  Q: Shivani.Singla Mf Plusss: Yes it is bcoz of cough I think...how I can help
+  A: 1 -2 bfeed at night is enough
+
+[dangerous] DANGEROUS: Decreasing water makes constipation worse, not better
+  Q: Hi , my 8 months old daughter is passing little hard stools, she is finding difficult to pass it. I am giving her fiber 
+  A: Yes decrease water does this
+
+[vague_question] 
+  Q: She rejects water hardly takes 50-60 ml a day
+  A: Mix some flavor like ors or lemon small amount and then try
+
+[vague_question] 
+  Q: Ok any other home available item I can use?
+  A: Fruits rich in water can be given all day. This could be Slight growing spurt feed frequently and yes you can try new pu
+
+[vague_question] 
+  Q: Is this an emergency to visit? Should i go today?
+  A: No you can go tomorrow
+
+[vague_question] 
+  Q: Hi, which baby milk formula is best for newborns?
+  A: A formula that has following is the best
+
+[vague_question] 
+  Q: White part look slightly red
+  A: Yhats alright just clean with warm water dipped cotton
+
+[vague_question] 
+  Q: Is this normal breathing? Please tell
+  A: No sound of breathing only external noise is heard in this video
+
+[media_reference] 
+  Q: I’m a bit worried about my daughter. For the past few days she is barely eating. She only takes 3–4 bites and then stops
+  A: Can u send photos of the conjunctiva of eye and nails of the baby ?
+
+[vague_question] 
+  Q: Okay and is it normal if baby is peeing 2-3 times a day?
+  A: Then just wait and watch and give soft fibre rich diet
+
+[vague_question] 
+  Q: What symptoms needs to be observed?
+  A: Distress in breathing or any difficulty in eating etc
+
+[vague_question] 
+  Q: That time it reduced but now again the temperature is 99.9
+  A: Sponge with normal temp water ans then give ibugesic p syp 3 ml
+
+[vague_question] 
+  Q: This appeared on his skin..suddenly..
+  A: This is allergic rash due to material of waistband apply betnovate n around the area for 3 days
+
+[vague_question] 
+  Q: Is there any other test also we should get done
+  A: No this will do
+
+[platform_artifact] 
+  Q: What can i offer?
+  A: 6-12 months .pdf • 4 pages document omitted
+
+[vague_question] 
+  Q: Now he did little bit black colour so is it normal?
+  A: Stop iron supplements if giving and check for a week
+
+[vague_question] 
+  Q: Fever is not down. When can i repeat the dose?
+  A: Do sponging and then repeat after 6-8 hrs
+
+[vague_question] 
+  Q: Anything which I can give to her ,food ??
+  A: Better to avoid no nutritional value as such unless paired with veggie and protein
+
+[vague_question] 
+  Q: I want to avoid milk anything apart from milk which I can give in winter
+  A: Mix water in milk itself but add ghee or white butter or malai too in it
+
+[vague_question] 
+  Q: Is this something to be concerned about?
+  A: Apply ice and update if not subsisded till evening well prescribe a med
+
+[vague_question] 
+  Q: Can this be due to viral cough too?
+  A: This could be due to some allergy to any food stuff try giving 1-3 things mixed max in purees so that its easy to unders
+
+[vague_question] 
+  Q: Possible reason of vomit?
+  A: Apply ice pack and give pcm if cranky. Either viral or allergic
+
+[useless_answer] 
+  Q: I want to connect now..
+  A: Sure call at 8319002903
+
+[vague_question] 
+  Q: Twice a day or once?
+  A: 1/2 sachets 2 times
+
+[vague_question] 
+  Q: How about when adding the powder to gravies or food solids (food and fruits)? Do I still need to soak the powder in wate
+  A: Better to give in water else there is a chance of inhaling
+
+[useless_answer] 
+  Q: Please share guidance around weaning
+  A: Will do a session on the topic soon
+
+[useless_answer] 
+  Q: When are you planning to do the same
+  A: Ill share a detailed pdf for now soon
+
+[vague_question] 
+  Q: What could be the cause for this ?
+  A: Allergic rash converted to a bacterial one
+
+[vague_question] 
+  Q: And what to do for runny nose?
+  A: Do home remedies till 3 days if not improving then well think about meds
+
+[vague_question] 
+  Q: Peeing normal ? Age rn and food ?
+  A: Yes peeing is normal
+
+[vague_question] 
+  Q: Should i give colicaid as well
+  A: Yes give collicaid and do massage of tummy
+
+[vague_question] 
+  Q: 2 times a day?
+  A: Yes if no constopation or loose motions
+
+[vague_question] 
+  Q: Also can you tell what spices can i introduce him now? At 8 months?
+  A: That all are good no nedd to add anything else
+
+[vague_question] 
+  Q: Also, can i now introduce pancake/chilla to him? And how? Like once in a day? Rest continue with hand mash or give only 
+  A: Yes mash it all with hand and feed after 10 month let the baby mash and eat
+
+[vague_question] 
+  Q: What could be the possible reason doc , so that i can be careful with it
+  A: This is some allergy may b due to a lot of reason possibly but not nebulisation
+
+[vague_question] 
+  Q: Hi the doc is on leave today, clinic is closed.., is there a chance of allergy if duolin and budecort be mixed ?
+  A: There could be but there are very less chances
+
+[vague_question] 
+  Q: But i am seeing around 9 since one month
+  A: Burp the baby mid feed Fruits mkahana in ghee veggies and non veg tikkis appe dosa etc anything homemade or natural will
+
+[vague_question] 
+  Q: But before feed or after..
+  A: Before feed and before sleep
+
+[vague_question] 
+  Q: Hi Dr meri baby ko constipation se stool me blood arha hai kya karu
+  A: Could be due to that better to stop ans get a stool sample done
+
+[platform_artifact] 
+  Q: this appears last night wasn’t there before . What should i do? And what is this? video omitted
+  A: Could be a small benign hemangioma dt trauma
+
+[vague_question] 
+  Q: I heard that hing weakens the bones , just wanted to know from doctors perspective before believing it ., please help me
+  A: No scientific or medical reasoning that hing does this
+
+[vague_question] 
+  Q: Since how many days the baby didnt poop ?
+  A: Today is second day
+
+[media_reference] 
+  Q: Hello Doctor, 10 months old is zoning out sometimes these days. He’s looking at things and staring at it for a bit.
+  A: For how much time ? Although yhis is very normal but send a video once if possible
+
+[vague_question] 
+  Q: Can I give this to my 2.5 yr old as she is eating walls and mud
+  A: Not fda approved cant say
+
+[vague_question] 
+  Q: Is there another option besides lemon?
+  A: Hint of ors can be used proper ors nahi
+
+[vague_question] 
+  Q: What could be the cause for this?
+  A: Can be allergy to some food usually
+
+[vague_question] 
+  Q: Could this be reduced due to sweating?
+  A: Give as much water ans water rich fruits and foods to the baby as possible
+
+[vague_question] 
+  Q: Since 7 am there is no pee…. As i have kept him diaper free
+  A: Use ors or lemon water too
+
+[dangerous] Food suggestion for mosquito bites — completely wrong mismatch
+  Q: My 9 month old baby suddenly had these red bumps on one hand. Look like mosquito bites. What can i apply ?
+  A: Any food like beet root or dragon fruit
+
+[vague_question] 
+  Q: He also eats his hands alot , while doing that today he got hurt and there was blood around the corner of his mouth
+  A: Avoid both better to give fruits directly
+
+[vague_question] 
+  Q: Could you please suggest any best brands
+  A: Cetaphil baby or chicco
+
+[vague_question] 
+  Q: After medication the hives faded but since evening a small rash appeared and it is spreading again...
+  A: Wait and watch for 3 days
+
+[vague_question] 
+  Q: These marks suddenly appeared on face of baby
+  A: Check for 2 days apply moisturizer and updated
+
+[useless_answer] 
+  Q: Hi, is there any workshop for weaning the baby off of breast milk ?
+  A: Were working on e books and website for this
+
+[vague_question] 
+  Q: these still keep appearing but now they just appear for a few minutes and subside ... is it normal? and should I keep gi
+  A: Do not give meds check for any allergen that may be causing this
+
+[platform_artifact] 
+  Q: Appropriate age for this activity ?? ,toddler age 2.6 image omitted
+  A: Can do if the baby feels confident
+
+[vague_question] 
+  Q: Any symptoms you are seeing?
+  A: Yes she woke up 1 hour ago and she is too much discomfort and not getting distract for other things
+
+[vague_question] 
+  Q: Making sound while putting pressure
+  A: Do tummy time this is colic
+
+[vague_question] 
+  Q: Sikayi and burp not helping , still colic
+  A: Do exercises of tummy movement of the legs and all will help
+
+[vague_question] 
+  Q: Doing it so far not helping
+  A: Lay the baby down on your lap like this and rub the back
+
+[answer_is_question] 
+  Q: Baby ko teething n fever hai
+  A: Check fever and update
+
+[vague_question] 
+  Q: Hi , how long do i continue vitamin d supplements for my 1 year old.., please advise
+  A: Give monthly one depura 60k
+
+[vague_question] 
+  Q: I rubbed ice and wiped with water
+  A: Wash with cold water and apply silver nitrate ointment on affected area
+
+[vague_question] 
+  Q: After that stool were normal….He pooped twice after this one
+  A: No issues then if at all happens again then go for stool sample
