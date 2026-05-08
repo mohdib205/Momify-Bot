@@ -4357,3 +4357,254 @@
 2026-04-29 10:01:20 | INFO | babydoc.app | Response time: 521ms
 2026-04-29 10:01:24 | INFO | babydoc.app | Incoming query: 'my baby is not breathing properly and lips are turning blue'
 2026-04-29 10:01:24 | WARNING | babydoc.app | Safety triggered for query: 'my baby is not breathing properly and lips are turning blue'
+2026-04-30 15:01:41 | INFO | babydoc.app | Incoming query: 'hi'
+2026-04-30 15:01:42 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-04-30 15:01:42 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-04-30 15:01:43 | INFO | babydoc.app | Response time: 1984ms
+2026-04-30 15:01:57 | INFO | babydoc.app | Incoming query: "my baby's age is 1 year old"
+2026-04-30 15:01:57 | DEBUG | babydoc.app | Retrieval score: 0.710 | top results: 5
+2026-04-30 15:01:57 | INFO | babydoc.app | Mode: data | Score: 0.710
+2026-04-30 15:01:57 | INFO | babydoc.app | Response time: 588ms
+2026-04-30 15:02:17 | INFO | babydoc.app | Incoming query: 'kaala je'
+2026-04-30 15:02:17 | DEBUG | babydoc.app | Retrieval score: 0.687 | top results: 5
+2026-04-30 15:02:17 | INFO | babydoc.app | Mode: data | Score: 0.687
+2026-04-30 15:02:17 | INFO | babydoc.app | Response time: 730ms
+2026-04-30 15:02:39 | INFO | babydoc.app | Incoming query: 'mere baby kee age 2 years he'
+2026-04-30 15:02:39 | DEBUG | babydoc.app | Retrieval score: 0.745 | top results: 5
+2026-04-30 15:02:39 | INFO | babydoc.app | Mode: data | Score: 0.745
+2026-04-30 15:02:39 | INFO | babydoc.app | Response time: 658ms
+2026-04-30 15:07:53 | INFO | babydoc.app | Momify API shutting down.
+2026-04-30 15:09:37 | INFO | babydoc.app | Momify API starting up...
+2026-04-30 15:09:45 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-04-30 15:09:45 | INFO | babydoc.app | Momify API shutting down.
+2026-04-30 15:10:09 | INFO | babydoc.app | Momify API starting up...
+2026-04-30 15:10:15 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-04-30 15:20:12 | INFO | babydoc.app | Incoming query: 'hi'
+2026-04-30 15:20:12 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-04-30 15:20:12 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-04-30 15:20:13 | INFO | babydoc.app | Response time: 878ms
+2026-04-30 15:20:34 | INFO | babydoc.app | Incoming query: 'mera baby ko bukhar he'
+2026-04-30 15:20:34 | DEBUG | babydoc.app | Retrieval score: 0.838 | top results: 5
+2026-04-30 15:20:34 | INFO | babydoc.app | Mode: data | Score: 0.838
+2026-04-30 15:20:34 | INFO | babydoc.app | Response time: 391ms
+2026-04-30 15:20:57 | INFO | babydoc.app | Incoming query: 'speak in hindi'
+2026-04-30 15:20:58 | DEBUG | babydoc.app | Retrieval score: 0.649 | top results: 5
+2026-04-30 15:20:58 | INFO | babydoc.app | Mode: data | Score: 0.649
+2026-04-30 15:20:58 | INFO | babydoc.app | Response time: 597ms
+2026-04-30 15:25:09 | INFO | babydoc.app | Momify API shutting down.
+2026-04-30 15:25:46 | INFO | babydoc.app | Momify API starting up...
+2026-04-30 15:25:51 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-04-30 15:25:51 | INFO | babydoc.app | Incoming query: 'hi'
+2026-04-30 15:25:51 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-04-30 15:25:51 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-04-30 15:25:52 | INFO | babydoc.app | Response time: 529ms
+2026-04-30 15:26:46 | INFO | babydoc.app | Incoming query: 'hi'
+2026-04-30 15:26:46 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-04-30 15:26:46 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-04-30 15:26:47 | INFO | babydoc.app | Response time: 531ms
+2026-04-30 15:26:51 | INFO | babydoc.app | Incoming query: 'mere baby ko fever he'
+2026-04-30 15:26:51 | DEBUG | babydoc.app | Retrieval score: 0.797 | top results: 5
+2026-04-30 15:26:51 | INFO | babydoc.app | Mode: data | Score: 0.797
+2026-04-30 15:26:51 | INFO | babydoc.app | Response time: 340ms
+2026-04-30 15:27:06 | INFO | babydoc.app | Incoming query: 'uska temp 101 f he'
+2026-04-30 15:27:07 | DEBUG | babydoc.app | Retrieval score: 0.553 | top results: 5
+2026-04-30 15:27:07 | INFO | babydoc.app | Mode: weak | Score: 0.553
+2026-04-30 15:27:07 | INFO | babydoc.app | Response time: 592ms
+2026-04-30 15:27:18 | INFO | babydoc.app | Incoming query: 'uska weight 14 kg he'
+2026-04-30 15:27:18 | DEBUG | babydoc.app | Retrieval score: 0.742 | top results: 5
+2026-04-30 15:27:18 | INFO | babydoc.app | Mode: data | Score: 0.742
+2026-04-30 15:27:18 | INFO | babydoc.app | Response time: 685ms
+2026-04-30 15:27:31 | INFO | babydoc.app | Incoming query: 'nhi'
+2026-04-30 15:27:31 | DEBUG | babydoc.app | Retrieval score: 0.577 | top results: 5
+2026-04-30 15:27:31 | INFO | babydoc.app | Mode: weak | Score: 0.577
+2026-04-30 15:27:32 | INFO | babydoc.app | Response time: 670ms
+2026-04-30 15:28:53 | INFO | babydoc.app | Incoming query: 'hum US me hein yhn paracetamol nhi milti'
+2026-04-30 15:28:53 | DEBUG | babydoc.app | Retrieval score: 0.697 | top results: 5
+2026-04-30 15:28:53 | INFO | babydoc.app | Mode: data | Score: 0.697
+2026-04-30 15:28:54 | INFO | babydoc.app | Response time: 780ms
+2026-04-30 15:29:09 | INFO | babydoc.app | Incoming query: 'dosage?'
+2026-04-30 15:29:09 | DEBUG | babydoc.app | Retrieval score: 0.621 | top results: 5
+2026-04-30 15:29:09 | INFO | babydoc.app | Mode: data | Score: 0.621
+2026-04-30 15:29:09 | INFO | babydoc.app | Response time: 498ms
+2026-04-30 15:29:25 | INFO | babydoc.app | Incoming query: 'abhi to bataya'
+2026-04-30 15:29:25 | DEBUG | babydoc.app | Retrieval score: 0.557 | top results: 5
+2026-04-30 15:29:25 | INFO | babydoc.app | Mode: weak | Score: 0.557
+2026-04-30 15:29:26 | INFO | babydoc.app | Response time: 851ms
+2026-04-30 15:30:40 | INFO | babydoc.app | Incoming query: 'mera baby ka color black he kya krun?'
+2026-04-30 15:30:40 | DEBUG | babydoc.app | Retrieval score: 0.661 | top results: 5
+2026-04-30 15:30:40 | INFO | babydoc.app | Mode: data | Score: 0.661
+2026-04-30 15:30:41 | INFO | babydoc.app | Response time: 839ms
+2026-04-30 15:31:21 | INFO | babydoc.app | Incoming query: '1.5 years is my baby age , how much time i should breastfeed her'
+2026-04-30 15:31:21 | DEBUG | babydoc.app | Retrieval score: 0.769 | top results: 5
+2026-04-30 15:31:21 | INFO | babydoc.app | Mode: data | Score: 0.769
+2026-04-30 15:31:21 | INFO | babydoc.app | Response time: 600ms
+2026-05-05 15:45:30 | INFO | babydoc.app | Incoming query: 'hi'
+2026-05-05 15:45:31 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-05-05 15:45:31 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-05-05 15:45:31 | INFO | babydoc.app | Response time: 1670ms
+2026-05-05 16:25:38 | INFO | babydoc.app | Incoming query: 'hi kese ho'
+2026-05-05 16:25:38 | DEBUG | babydoc.app | Retrieval score: 0.623 | top results: 5
+2026-05-05 16:25:38 | INFO | babydoc.app | Mode: data | Score: 0.623
+2026-05-05 16:25:39 | INFO | babydoc.app | Response time: 717ms
+2026-05-05 16:27:14 | INFO | babydoc.app | Incoming query: 'mere baby ko fever he'
+2026-05-05 16:27:14 | DEBUG | babydoc.app | Retrieval score: 0.797 | top results: 5
+2026-05-05 16:27:14 | INFO | babydoc.app | Mode: data | Score: 0.797
+2026-05-05 16:27:14 | INFO | babydoc.app | Response time: 526ms
+2026-05-05 16:27:35 | INFO | babydoc.app | Incoming query: '12kg and temp is 101F'
+2026-05-05 16:27:36 | DEBUG | babydoc.app | Retrieval score: 0.616 | top results: 5
+2026-05-05 16:27:36 | INFO | babydoc.app | Mode: data | Score: 0.616
+2026-05-05 16:27:36 | INFO | babydoc.app | Response time: 719ms
+2026-05-05 16:27:45 | INFO | babydoc.app | Incoming query: '1 year'
+2026-05-05 16:27:45 | DEBUG | babydoc.app | Retrieval score: 0.535 | top results: 5
+2026-05-05 16:27:45 | INFO | babydoc.app | Mode: weak | Score: 0.535
+2026-05-05 16:27:46 | INFO | babydoc.app | Response time: 436ms
+2026-05-05 16:28:58 | INFO | babydoc.app | Momify API shutting down.
+2026-05-05 16:30:38 | INFO | babydoc.app | Momify API starting up...
+2026-05-05 16:30:45 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-05 16:30:45 | INFO | babydoc.app | Incoming query: 'i dont have paracetamol'
+2026-05-05 16:30:45 | INFO | babydoc.app | Incoming query: 'i dont have paracetamol\n\n'
+2026-05-05 16:30:45 | DEBUG | babydoc.app | Retrieval score: 0.583 | top results: 5
+2026-05-05 16:30:45 | INFO | babydoc.app | Mode: weak | Score: 0.583
+2026-05-05 16:30:45 | DEBUG | babydoc.app | Retrieval score: 0.583 | top results: 5
+2026-05-05 16:30:45 | INFO | babydoc.app | Mode: weak | Score: 0.583
+2026-05-05 16:30:45 | INFO | babydoc.app | Response time: 681ms
+2026-05-05 16:30:45 | INFO | babydoc.app | Response time: 722ms
+2026-05-05 16:32:21 | INFO | babydoc.app | Incoming query: 'Hi'
+2026-05-05 16:32:21 | DEBUG | babydoc.app | Retrieval score: 0.518 | top results: 5
+2026-05-05 16:32:21 | INFO | babydoc.app | Mode: weak | Score: 0.518
+2026-05-05 16:32:21 | INFO | babydoc.app | Response time: 442ms
+2026-05-05 16:32:26 | INFO | babydoc.app | Incoming query: 'my baby have fever'
+2026-05-05 16:32:26 | DEBUG | babydoc.app | Retrieval score: 0.880 | top results: 5
+2026-05-05 16:32:26 | INFO | babydoc.app | Mode: data | Score: 0.880
+2026-05-05 16:32:26 | INFO | babydoc.app | Response time: 507ms
+2026-05-05 16:33:05 | INFO | babydoc.app | Incoming query: 'her weight is 20 kg and age is 2 years'
+2026-05-05 16:33:05 | DEBUG | babydoc.app | Retrieval score: 0.601 | top results: 5
+2026-05-05 16:33:05 | INFO | babydoc.app | Mode: data | Score: 0.601
+2026-05-05 16:33:05 | INFO | babydoc.app | Response time: 586ms
+2026-05-05 16:33:18 | INFO | babydoc.app | Incoming query: '102F'
+2026-05-05 16:33:19 | DEBUG | babydoc.app | Retrieval score: 0.536 | top results: 5
+2026-05-05 16:33:19 | INFO | babydoc.app | Mode: weak | Score: 0.536
+2026-05-05 16:33:19 | INFO | babydoc.app | Response time: 737ms
+2026-05-06 12:10:12 | INFO | babydoc.app | Incoming query: 'HI'
+2026-05-06 12:10:13 | DEBUG | babydoc.app | Retrieval score: 0.526 | top results: 5
+2026-05-06 12:10:13 | INFO | babydoc.app | Mode: weak | Score: 0.526
+2026-05-06 12:10:14 | INFO | babydoc.app | Response time: 1971ms
+2026-05-06 12:11:03 | INFO | babydoc.app | Incoming query: ',y baby is having stool?'
+2026-05-06 12:11:03 | DEBUG | babydoc.app | Retrieval score: 0.740 | top results: 5
+2026-05-06 12:11:03 | INFO | babydoc.app | Mode: data | Score: 0.740
+2026-05-06 12:11:03 | INFO | babydoc.app | Response time: 615ms
+2026-05-06 12:11:14 | INFO | babydoc.app | Incoming query: 'it is soft since last night'
+2026-05-06 12:11:14 | DEBUG | babydoc.app | Retrieval score: 0.434 | top results: 5
+2026-05-06 12:11:14 | INFO | babydoc.app | Mode: weak | Score: 0.434
+2026-05-06 12:11:15 | INFO | babydoc.app | Response time: 690ms
+2026-05-06 12:11:32 | INFO | babydoc.app | Incoming query: 'what  should i feed him for cure'
+2026-05-06 12:11:32 | DEBUG | babydoc.app | Retrieval score: 0.633 | top results: 5
+2026-05-06 12:11:32 | INFO | babydoc.app | Mode: data | Score: 0.633
+2026-05-06 12:11:32 | INFO | babydoc.app | Response time: 474ms
+2026-05-06 12:11:45 | INFO | babydoc.app | Incoming query: 'he is 2 months old'
+2026-05-06 12:11:45 | DEBUG | babydoc.app | Retrieval score: 0.616 | top results: 5
+2026-05-06 12:11:45 | INFO | babydoc.app | Mode: data | Score: 0.616
+2026-05-06 12:11:46 | INFO | babydoc.app | Response time: 522ms
+2026-05-06 12:12:13 | INFO | babydoc.app | Incoming query: 'oh so water is good for 2 month old baby?'
+2026-05-06 12:12:13 | DEBUG | babydoc.app | Retrieval score: 0.728 | top results: 5
+2026-05-06 12:12:13 | INFO | babydoc.app | Mode: data | Score: 0.728
+2026-05-06 12:12:13 | INFO | babydoc.app | Response time: 517ms
+2026-05-06 12:12:27 | INFO | babydoc.app | Incoming query: 'then why you suggested so?'
+2026-05-06 12:12:27 | DEBUG | babydoc.app | Retrieval score: 0.355 | top results: 5
+2026-05-06 12:12:27 | INFO | babydoc.app | Mode: fallback | Score: 0.355
+2026-05-06 12:12:27 | INFO | babydoc.app | Response time: 467ms
+2026-05-06 12:12:39 | INFO | babydoc.app | Incoming query: 'but you suggested it for stool?'
+2026-05-06 12:12:39 | DEBUG | babydoc.app | Retrieval score: 0.463 | top results: 5
+2026-05-06 12:12:39 | INFO | babydoc.app | Mode: weak | Score: 0.463
+2026-05-06 12:12:40 | INFO | babydoc.app | Response time: 678ms
+2026-05-07 11:01:43 | INFO | babydoc.app | Incoming query: 'hi'
+2026-05-07 11:01:45 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-05-07 11:01:45 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-05-07 11:01:45 | INFO | babydoc.app | Response time: 1919ms
+2026-05-07 14:24:02 | INFO | babydoc.app | Momify API shutting down.
+2026-05-07 14:24:43 | INFO | babydoc.app | Momify API starting up...
+2026-05-07 14:24:48 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-07 14:24:48 | INFO | babydoc.app | Momify API shutting down.
+2026-05-07 14:25:05 | INFO | babydoc.app | Momify API starting up...
+2026-05-07 14:25:10 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-07 14:27:40 | INFO | babydoc.app | Incoming query: 'hi'
+2026-05-07 14:27:40 | DEBUG | babydoc.app | Retrieval score: 0.519 | top results: 5
+2026-05-07 14:27:40 | INFO | babydoc.app | Mode: weak | Score: 0.519
+2026-05-07 14:27:41 | INFO | babydoc.app | Response time: 555ms
+2026-05-07 14:27:54 | INFO | babydoc.app | Incoming query: 'my baby have fever'
+2026-05-07 14:27:54 | DEBUG | babydoc.app | Retrieval score: 0.880 | top results: 5
+2026-05-07 14:27:54 | INFO | babydoc.app | Mode: data | Score: 0.880
+2026-05-07 14:27:54 | INFO | babydoc.app | Response time: 394ms
+2026-05-07 14:28:10 | INFO | babydoc.app | Incoming query: 'it is 101 F and her age is 1.5 years'
+2026-05-07 14:28:10 | DEBUG | babydoc.app | Retrieval score: 0.606 | top results: 5
+2026-05-07 14:28:10 | INFO | babydoc.app | Mode: data | Score: 0.606
+2026-05-07 14:28:10 | INFO | babydoc.app | Response time: 440ms
+2026-05-07 14:28:40 | INFO | babydoc.app | Incoming query: 'mere baby ko kya khilaun , usey sardi horhi he'
+2026-05-07 14:28:40 | DEBUG | babydoc.app | Retrieval score: 0.813 | top results: 5
+2026-05-07 14:28:40 | INFO | babydoc.app | Mode: data | Score: 0.813
+2026-05-07 14:28:41 | INFO | babydoc.app | Response time: 794ms
+2026-05-07 14:29:13 | INFO | babydoc.app | Incoming query: 'summer season me garam kapde nhi pehna sakte'
+2026-05-07 14:29:13 | DEBUG | babydoc.app | Retrieval score: 0.494 | top results: 5
+2026-05-07 14:29:13 | INFO | babydoc.app | Mode: weak | Score: 0.494
+2026-05-07 14:29:14 | INFO | babydoc.app | Response time: 370ms
+2026-05-07 14:34:57 | INFO | babydoc.app | Momify API shutting down.
+2026-05-07 14:35:12 | INFO | babydoc.app | Momify API starting up...
+2026-05-07 14:35:15 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-07 14:35:31 | INFO | babydoc.app | Momify API shutting down.
+2026-05-07 14:35:46 | INFO | babydoc.app | Momify API starting up...
+2026-05-07 14:35:49 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-07 14:35:49 | INFO | babydoc.app | Momify API shutting down.
+2026-05-07 14:36:02 | INFO | babydoc.app | Momify API starting up...
+2026-05-07 14:36:05 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-07 14:37:20 | INFO | babydoc.app | Incoming query: 'Hi  '
+2026-05-07 14:37:20 | DEBUG | babydoc.app | Retrieval score: 0.518 | top results: 5
+2026-05-07 14:37:20 | INFO | babydoc.app | Mode: weak | Score: 0.518
+2026-05-07 14:37:21 | INFO | babydoc.app | Response time: 445ms
+2026-05-07 14:37:30 | INFO | babydoc.app | Incoming query: 'mere baby ko bukhar he '
+2026-05-07 14:37:30 | DEBUG | babydoc.app | Retrieval score: 0.795 | top results: 5
+2026-05-07 14:37:30 | INFO | babydoc.app | Mode: data | Score: 0.795
+2026-05-07 14:37:31 | INFO | babydoc.app | Response time: 445ms
+2026-05-07 14:37:47 | INFO | babydoc.app | Incoming query: 'kuch ilaaj batao'
+2026-05-07 14:37:47 | DEBUG | babydoc.app | Retrieval score: 0.666 | top results: 5
+2026-05-07 14:37:47 | INFO | babydoc.app | Mode: data | Score: 0.666
+2026-05-07 14:37:47 | INFO | babydoc.app | Response time: 590ms
+2026-05-08 11:25:39 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:26:17 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:26:21 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:26:21 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:26:34 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:26:37 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:26:37 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:26:50 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:26:53 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:26:53 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:27:06 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:27:10 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:27:12 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:27:25 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:27:28 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:27:29 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:27:42 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:27:45 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:27:45 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:27:58 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:28:02 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:28:02 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:28:15 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:28:18 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:28:19 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:28:32 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:28:35 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:28:43 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:28:56 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:29:00 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:34:43 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:34:56 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:34:59 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:34:59 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:35:12 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:35:16 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:35:16 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:35:29 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:35:32 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:35:32 | INFO | babydoc.app | Momify API shutting down.
