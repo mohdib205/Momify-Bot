@@ -15,3 +15,4 @@ class ChatResponse(BaseModel):
     reply: str
     mode: str       # data / weak / fallback / emergency
     score: float
+

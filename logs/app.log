@@ -4608,3 +4608,145 @@
 2026-05-08 11:35:29 | INFO | babydoc.app | Momify API starting up...
 2026-05-08 11:35:32 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
 2026-05-08 11:35:32 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:35:45 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:35:49 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-08 11:35:49 | INFO | babydoc.app | Momify API shutting down.
+2026-05-08 11:36:02 | INFO | babydoc.app | Momify API starting up...
+2026-05-08 11:36:05 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:06:21 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:06:36 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:07:14 | INFO | babydoc.app | Incoming query: 'my baby is having stool'
+2026-05-12 11:07:14 | DEBUG | babydoc.app | Retrieval score: 0.795 | top results: 5
+2026-05-12 11:07:14 | INFO | babydoc.app | Mode: data | Score: 0.795
+2026-05-12 11:07:15 | INFO | babydoc.app | Response time: 1081ms
+2026-05-12 11:07:53 | INFO | babydoc.app | Incoming query: 'his age is 1 year , he is having it since last night , '
+2026-05-12 11:07:53 | DEBUG | babydoc.app | Retrieval score: 0.571 | top results: 5
+2026-05-12 11:07:53 | INFO | babydoc.app | Mode: weak | Score: 0.571
+2026-05-12 11:07:53 | INFO | babydoc.app | Response time: 751ms
+2026-05-12 11:13:14 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:13:37 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:13:42 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:13:42 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:14:03 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:14:08 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:15:15 | INFO | babydoc.app | Incoming query: 'Can we give paracetamol to 2.5 month old on 10 weeks vaccination without fever but so extreme pain that he is crying continuously and when he cries so much in pain , he stops his breath.?'
+2026-05-12 11:15:15 | WARNING | babydoc.app | Safety triggered for query: 'Can we give paracetamol to 2.5 month old on 10 weeks vaccination without fever but so extreme pain that he is crying continuously and when he cries so much in pain , he stops his breath.?'
+2026-05-12 11:27:35 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:28:03 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:28:09 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:28:09 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:29:18 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:29:25 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:29:25 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:29:45 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:29:51 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:29:51 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:30:15 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:30:28 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:31:53 | INFO | babydoc.app | Incoming query: '\nCan we give paracetamol to 2.5 month old on 10 weeks vaccination without fever but so extreme pain that he is crying continuously and when he cries so much in pain , he stops his breath.?\n'
+2026-05-12 11:31:53 | DEBUG | babydoc.app | Retrieval score: 0.992 | top results: 5
+2026-05-12 11:31:53 | INFO | babydoc.app | Mode: data | Score: 0.992
+2026-05-12 11:31:55 | INFO | babydoc.app | Response time: 1411ms
+2026-05-12 11:33:42 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:34:11 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:34:24 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:35:06 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:35:37 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:35:43 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:35:44 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:36:08 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:36:14 | INFO | babydoc.app | Loaded 493 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:47:46 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:49:19 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:49:26 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:49:33 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:49:51 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:49:55 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:51:44 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:52:54 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:52:58 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:52:58 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 11:53:15 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 11:53:19 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 11:57:49 | INFO | babydoc.app | Incoming query: 'Can we give paracetamol to 2.5 month old on 10 weeks vaccination without fever but so extreme pain that he is crying continuously and when he cries so much in pain , he stops his breath.'
+2026-05-12 11:57:49 | DEBUG | babydoc.app | Retrieval score: 1.000 | top results: 5
+2026-05-12 11:57:49 | INFO | babydoc.app | Mode: data | Score: 1.000
+2026-05-12 11:57:50 | INFO | babydoc.app | Response time: 922ms
+2026-05-12 12:01:32 | INFO | babydoc.app | Incoming query: 'my baby is 1 year old, not eating anything what should i do'
+2026-05-12 12:01:32 | DEBUG | babydoc.app | Retrieval score: 0.664 | top results: 5
+2026-05-12 12:01:32 | INFO | babydoc.app | Mode: data | Score: 0.664
+2026-05-12 12:01:33 | INFO | babydoc.app | Response time: 578ms
+2026-05-12 12:01:54 | INFO | babydoc.app | Incoming query: 'what drinks should i give'
+2026-05-12 12:01:54 | DEBUG | babydoc.app | Retrieval score: 0.555 | top results: 5
+2026-05-12 12:01:54 | INFO | babydoc.app | Mode: data | Score: 0.555
+2026-05-12 12:01:55 | INFO | babydoc.app | Response time: 620ms
+2026-05-12 15:35:21 | INFO | babydoc.app | Incoming query: 'my baby is 1 year old, not eating anything what should i do?'
+2026-05-12 15:35:21 | DEBUG | babydoc.app | Retrieval score: 0.682 | top results: 5
+2026-05-12 15:35:21 | INFO | babydoc.app | Mode: data | Score: 0.682
+2026-05-12 15:35:22 | INFO | babydoc.app | Response time: 1130ms
+2026-05-12 15:37:05 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:37:34 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:37:39 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:37:39 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:38:01 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:38:06 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:40:04 | INFO | babydoc.app | Incoming query: '\nmy baby is 1 year old, not eating anything what should i do?\n\n'
+2026-05-12 15:40:04 | DEBUG | babydoc.app | Retrieval score: 0.682 | top results: 5
+2026-05-12 15:40:04 | INFO | babydoc.app | Mode: data | Score: 0.682
+2026-05-12 15:40:05 | INFO | babydoc.app | Response time: 1299ms
+2026-05-12 15:41:17 | INFO | babydoc.app | Incoming query: 'my baby is 1 year old, not eating anything what should i do?\n\n'
+2026-05-12 15:41:17 | DEBUG | babydoc.app | Retrieval score: 0.682 | top results: 5
+2026-05-12 15:41:17 | INFO | babydoc.app | Mode: data | Score: 0.682
+2026-05-12 15:41:18 | INFO | babydoc.app | Response time: 781ms
+2026-05-12 15:42:08 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:42:45 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:42:50 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:47:47 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:48:10 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:48:15 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:48:15 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:48:41 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:48:47 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:48:55 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:49:18 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:49:22 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:49:22 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:49:45 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:49:50 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:50:04 | INFO | babydoc.app | Incoming query: 'my baby is 1 year old, not eating anything what should i do?\n\n'
+2026-05-12 15:50:04 | DEBUG | babydoc.app | Retrieval score: 0.682 | top results: 5
+2026-05-12 15:50:04 | INFO | babydoc.app | Mode: weak | Score: 0.682
+2026-05-12 15:50:05 | INFO | babydoc.app | Response time: 1398ms
+2026-05-12 15:51:29 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:51:51 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:51:56 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:51:56 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:52:16 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 15:52:21 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 15:53:38 | INFO | babydoc.app | Incoming query: 'my baby is 0.5 year old, not eating anything what should i do?\n\n'
+2026-05-12 15:53:38 | DEBUG | babydoc.app | Retrieval score: 0.663 | top results: 5
+2026-05-12 15:53:38 | INFO | babydoc.app | Mode: weak | Score: 0.663
+2026-05-12 15:53:39 | INFO | babydoc.app | Response time: 1575ms
+2026-05-12 15:59:15 | INFO | babydoc.app | Momify API shutting down.
+2026-05-12 15:59:54 | INFO | babydoc.app | Momify API starting up...
+2026-05-12 16:00:06 | INFO | babydoc.app | Loaded 429 Q&A pairs from data\ALLQA_cleaned.json
+2026-05-12 16:02:15 | INFO | babydoc.app | Incoming query: 'my baby is 0.5 year old, not eating anything what should i do?\n\n'
+2026-05-12 16:02:15 | DEBUG | babydoc.app | Retrieval score: 0.663 | top results: 5
+2026-05-12 16:02:15 | INFO | babydoc.app | Mode: weak | Score: 0.663
+2026-05-12 16:02:17 | INFO | babydoc.app | Response time: 1527ms
+2026-05-12 16:04:33 | INFO | babydoc.app | Incoming query: 'really should i give meals 2-3 times to a 6months old baby?'
+2026-05-12 16:04:33 | DEBUG | babydoc.app | Retrieval score: 0.771 | top results: 5
+2026-05-12 16:04:33 | INFO | babydoc.app | Mode: data | Score: 0.771
+2026-05-12 16:04:33 | INFO | babydoc.app | Response time: 664ms
+2026-05-12 16:04:50 | INFO | babydoc.app | Incoming query: 'what food should i give?'
+2026-05-12 16:04:50 | DEBUG | babydoc.app | Retrieval score: 0.723 | top results: 5
+2026-05-12 16:04:50 | INFO | babydoc.app | Mode: data | Score: 0.723
+2026-05-12 16:04:51 | INFO | babydoc.app | Response time: 905ms
+2026-05-13 14:56:49 | INFO | babydoc.app | Incoming query: 'HI'
+2026-05-13 14:56:49 | DEBUG | babydoc.app | Retrieval score: 0.526 | top results: 5
+2026-05-13 14:56:49 | INFO | babydoc.app | Mode: weak | Score: 0.526
+2026-05-13 14:56:51 | INFO | babydoc.app | Response time: 2309ms
+2026-05-13 16:08:20 | INFO | babydoc.app | Momify API shutting down.
+2026-05-13 16:12:42 | INFO | babydoc.app | Momify API starting up...
+2026-05-13 16:12:46 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-13 16:12:46 | INFO | babydoc.app | Momify API shutting down.
