@@ -12,7 +12,7 @@ load_dotenv()
 # # ── Cosine similarity thresholds (0.0 to 1.0) ──
 # # Jaccard was 0.15 / 0.05 — cosine scores are much higher
 # # 0.6+ = strong semantic match → answer strictly from data
-# # 0.4+ = moderate match       → use data but allow supplement
+# # 0.4+ = moderate match       → use data but allow ssupplement
 # # <0.4 = weak/no match        → fall back to knowledge prompt
 # HIGH_CONFIDENCE = 0.60
 # LOW_CONFIDENCE  = 0.40
@@ -22,11 +22,10 @@ from dotenv import load_dotenv
  
 load_dotenv()
  
-GROQ_API_KEY    = "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"
-QA_FILE         = os.getenv("QA_FILE", r"data\babydoc_merged.json")
+GROQ_API_KEY    = os.getenv("GROQ_API_KEY")
+QA_FILE         = os.getenv("QA_FILE", r"data\ALLQA_cleaned_v3.json")
 MODEL           = "llama-3.3-70b-versatile"
-# Judge_MODEL           = "llama-3.1-8b-instant"
 TOP_K           = 5
-HIGH_CONFIDENCE = 0.60
-LOW_CONFIDENCE  = 0.40
+HIGH_CONFIDENCE = 0.70
+LOW_CONFIDENCE  = 0.50
 DB_URL          = os.getenv("DB_URL")
