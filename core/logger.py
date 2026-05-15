@@ -32,14 +32,31 @@ def _log_to_file(record: dict):
 def _log_to_db(record: dict):
     try:
         conn = psycopg2.connect(DB_URL)
-        cur  = conn.cursor()
+        cur = conn.cursor()
+
         cur.execute("""
-            INSERT INTO chat_logs (timestamp, query, reply, mode, score, response_time_ms)
+            INSERT INTO chat_logs (
+                query,
+                reply,
+                mode,
+                score,
+                response_time_ms,
+                created_at
+            )
             VALUES (%s, %s, %s, %s, %s, %s)
-        """, (record["timestamp"], record["query"], record["reply"], record["mode"], record["score"], record["response_time_ms"]))
+        """, (
+            record["query"],
+            record["reply"],
+            record["mode"],
+            record["score"],
+            record["response_time_ms"],
+            record["timestamp"]
+        ))
+
         conn.commit()
         cur.close()
         conn.close()
+
     except Exception as e:
         app_logger.error(f"DB log failed: {e}")
 
