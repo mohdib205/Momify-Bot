@@ -4777,3 +4777,6 @@
 2026-05-15 15:12:36 | INFO | babydoc.app | Momify API starting up...
 2026-05-15 15:12:41 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
 2026-05-15 15:19:58 | INFO | babydoc.app | Momify API shutting down.
+2026-05-15 15:20:19 | INFO | babydoc.app | Momify API starting up...
+2026-05-15 15:20:22 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-15 15:35:22 | INFO | babydoc.app | Momify API shutting down.
