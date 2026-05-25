@@ -5000,3 +5000,8 @@ LINE 8:                 created_at
                         ^
 
 2026-05-25 16:01:27 | INFO | babydoc.app | Momify API shutting down.
+2026-05-25 16:02:30 | INFO | babydoc.app | Momify API starting up...
+2026-05-25 16:02:34 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-25 16:23:20 | INFO | babydoc.app | Momify API shutting down.
+2026-05-25 16:23:49 | INFO | babydoc.app | Momify API starting up...
+2026-05-25 16:23:53 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
