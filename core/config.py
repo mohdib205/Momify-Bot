@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# GROQ_API_KEY    = "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"
+
 # QA_FILE         = os.getenv("QA_FILE", r"data\ALLQA_cleaned.json")
 # MODEL           = "llama-3.3-70b-versatile"
 # TOP_K           = 5
