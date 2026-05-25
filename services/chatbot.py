@@ -1,3 +1,12 @@
+"""
+services/chatbot.py
+
+Key change from original:
+- get_response() now accepts baby_context parameter
+- Baby context is injected into the system prompt so LLM
+  knows baby details without asking the parent
+"""
+
 import re
 import time
 from groq import Groq
@@ -7,23 +16,20 @@ from core.prompts import STRICT_PROMPT, KNOWLEDGE_PROMPT
 from core.logger import app_logger, log_chat
 from services.retriever import retrieve, build_context
 from services.safety import safety_check
-from services.language import get_lang_instruction
 
 client = Groq(api_key=GROQ_API_KEY)
 
-# ─────────────────────────────────────────────
-# PRESCRIPTION FILTER
-# ─────────────────────────────────────────────
 
-# Patterns that indicate a prescription-level response slipped through the LLM
+# ── Prescription filter ───────────────────────────────────────────────────────
+
 _PRESCRIPTION_PATTERNS = [
-    r'\b\d+(\.\d+)?\s*(ml|mg|mcg|cc)\b',               # 2.5ml, 10mg, 0.5cc
-    r'\bevery\s+\d+\s+hours?\b',                          # every 6 hours
-    r'\b(once|twice|three\s+times)\s+(a\s+)?(day|daily)\b',  # twice a day
-    r'\bfor\s+\d+\s+(days?|weeks?)\b',                   # for 5 days
-    r'\b\d+\s+times?\s+(a\s+)?(day|daily)\b',            # 3 times a day
-    r'\bdin\s+mein\s+\d+\s+baar\b',                      # Hinglish: din mein 2 baar
-    r'\b\d+\s+baar\s+(roz|daily|din)\b',                 # Hinglish: 2 baar roz
+    r'\b\d+(\.\d+)?\s*(ml|mg|mcg|cc)\b',
+    r'\bevery\s+\d+\s+hours?\b',
+    r'\b(once|twice|three\s+times)\s+(a\s+)?(day|daily)\b',
+    r'\bfor\s+\d+\s+(days?|weeks?)\b',
+    r'\b\d+\s+times?\s+(a\s+)?(day|daily)\b',
+    r'\bdin\s+mein\s+\d+\s+baar\b',
+    r'\b\d+\s+baar\s+(roz|daily|din)\b',
 ]
 
 _DOCTOR_REDIRECT_EN = (
@@ -46,54 +52,46 @@ def _contains_prescription_detail(text: str) -> bool:
 
 
 def _is_hinglish(text: str) -> bool:
-    """Simple heuristic — reuse the same logic as language.py."""
-    hinglish_markers = ["hai", "karo", "aur", "nahi", "baby", "mama", "beti", "beta"]
+    hinglish_markers = ["hai", "karo", "aur", "nahi", "baby", "mama", "beti", "beta",
+                        "karein", "dein", "rakho", "pilao", "kya", "mein"]
     words = text.lower().split()
     return sum(1 for w in words if w in hinglish_markers) >= 2
 
 
 def _filter_prescription_response(response: str) -> str:
-    """
-    If the LLM response contains dosage / frequency / duration details,
-    strip those sentences and append the doctor-redirect message.
-    Returns the cleaned response unchanged if no prescription detail found.
-    """
     if not _contains_prescription_detail(response):
-        return response  # Nothing to fix
+        return response
 
-    # Split into sentences, keep only non-prescription ones
-    sentences = re.split(r'(?<=[.!?।])\s+', response)
+    sentences      = re.split(r'(?<=[.!?।])\s+', response)
     safe_sentences = []
     prescription_found = False
 
     for sentence in sentences:
         if _contains_prescription_detail(sentence):
             prescription_found = True
-            # Drop this sentence — it contains a dose/frequency/duration
         else:
             safe_sentences.append(sentence)
 
     clean_response = " ".join(safe_sentences).strip()
 
     if prescription_found:
-        redirect = (
-            _DOCTOR_REDIRECT_HI
-            if _is_hinglish(response)
-            else _DOCTOR_REDIRECT_EN
-        )
-        separator = "\n\n" if clean_response else ""
+        redirect   = _DOCTOR_REDIRECT_HI if _is_hinglish(response) else _DOCTOR_REDIRECT_EN
+        separator  = "\n\n" if clean_response else ""
         clean_response = f"{clean_response}{separator}⚠️ {redirect}"
 
     return clean_response
 
 
-# ─────────────────────────────────────────────
-# MAIN RESPONSE FUNCTION
-# ─────────────────────────────────────────────
+# ── Main response function ────────────────────────────────────────────────────
 
-def get_response(message: str, qa_data: list, history: list) -> tuple[str, str, float]:
+def get_response(
+    message:      str,
+    qa_data:      list,
+    history:      list,
+    baby_context: str = ""
+) -> tuple[str, str, float]:
+
     start_time = time.time()
-
     app_logger.info(f"Incoming query: {message!r}")
 
     # 1. Safety check
@@ -109,36 +107,37 @@ def get_response(message: str, qa_data: list, history: list) -> tuple[str, str, 
         )
         return safety_msg, "emergency", 0.0
 
-    # 2. Language instruction
-    lang_instruction = get_lang_instruction(message)
-
-    # 3. Retrieve from dataset
+    # 2. Retrieve from dataset
     best_score, retrieved = retrieve(message, qa_data)
     app_logger.debug(f"Retrieval score: {best_score:.3f} | top results: {len(retrieved)}")
 
-    # 4. Decide mode and build user message
+    # 3. Decide mode and build user message
     if best_score >= HIGH_CONFIDENCE:
         context  = build_context(retrieved)
         system   = STRICT_PROMPT
-        user_msg = f"{lang_instruction}\n\nRetrieved Q&A pairs:\n{context}\nParent's question: {message}"
+        user_msg = f"Retrieved Q&A pairs:\n{context}\nParent's question: {message}"
         mode     = "data"
 
     elif best_score >= LOW_CONFIDENCE:
         context  = build_context(retrieved)
         system   = STRICT_PROMPT
         user_msg = (
-            f"{lang_instruction}\n\nPartially relevant Q&A pairs:\n{context}\n"
+            f"Partially relevant Q&A pairs:\n{context}\n"
             f"Parent's question: {message}\n"
-            f"If the above pairs are not sufficient, use your knowledge to answer."
+            f"If the above pairs are not relevant, use your own knowledge."
         )
         mode     = "weak"
 
     else:
         system   = KNOWLEDGE_PROMPT
-        user_msg = f"{lang_instruction}\n\nParent's question: {message}"
+        user_msg = f"Parent's question: {message}"
         mode     = "fallback"
 
-    app_logger.info(f"Mode: {mode} | Score: {best_score:.3f}")
+    # 4. Inject baby context into system prompt if available
+    if baby_context:
+        system = system + f"\n\n{baby_context}"
+
+    app_logger.info(f"Mode: {mode} | Score: {best_score:.3f} | Baby context: {'yes' if baby_context else 'no'}")
 
     # 5. Build messages with history
     messages = [{"role": "system", "content": system}]
@@ -159,16 +158,15 @@ def get_response(message: str, qa_data: list, history: list) -> tuple[str, str, 
         app_logger.error(f"Groq API error: {e}")
         raise
 
-    # 7. Post-generation prescription filter (catches any LLM slippage)
+    # 7. Prescription filter
     reply = _filter_prescription_response(raw_reply)
-
     if reply != raw_reply:
-        app_logger.warning("Prescription filter triggered — dose/frequency/duration stripped from response.")
+        app_logger.warning("Prescription filter triggered.")
 
     response_time_ms = (time.time() - start_time) * 1000
     app_logger.info(f"Response time: {response_time_ms:.0f}ms")
 
-    # 8. Log chat record
+    # 8. Log
     log_chat(
         query=message,
         reply=reply,

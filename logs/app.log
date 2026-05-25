@@ -4780,3 +4780,223 @@
 2026-05-15 15:20:19 | INFO | babydoc.app | Momify API starting up...
 2026-05-15 15:20:22 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
 2026-05-15 15:35:22 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:12:26 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:12:35 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:13:30 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:14:01 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:14:09 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:14:09 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:14:49 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:14:53 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:17:18 | INFO | babydoc.app | Incoming query: 'Hey '
+2026-05-22 11:17:18 | DEBUG | babydoc.app | Retrieval score: 0.435 | top results: 5
+2026-05-22 11:17:18 | INFO | babydoc.app | Mode: fallback | Score: 0.435 | Baby context: no
+2026-05-22 11:17:19 | INFO | babydoc.app | Response time: 839ms
+2026-05-22 11:17:19 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:17:30 | INFO | babydoc.app | Incoming query: 'my baby have fever'
+2026-05-22 11:17:30 | DEBUG | babydoc.app | Retrieval score: 0.774 | top results: 5
+2026-05-22 11:17:30 | INFO | babydoc.app | Mode: data | Score: 0.774 | Baby context: no
+2026-05-22 11:17:30 | INFO | babydoc.app | Response time: 646ms
+2026-05-22 11:17:30 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:17:56 | INFO | babydoc.app | Incoming query: '?mere baby kee age kitni he'
+2026-05-22 11:17:56 | DEBUG | babydoc.app | Retrieval score: 0.797 | top results: 5
+2026-05-22 11:17:56 | INFO | babydoc.app | Mode: data | Score: 0.797 | Baby context: no
+2026-05-22 11:17:56 | INFO | babydoc.app | Response time: 692ms
+2026-05-22 11:17:57 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:19:38 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:20:09 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:20:12 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:21:32 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:22:05 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:22:11 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:25:47 | INFO | babydoc.app | Incoming query: 'hi'
+2026-05-22 11:25:47 | DEBUG | babydoc.app | Retrieval score: 0.412 | top results: 5
+2026-05-22 11:25:47 | INFO | babydoc.app | Mode: fallback | Score: 0.412 | Baby context: no
+2026-05-22 11:25:48 | INFO | babydoc.app | Response time: 1016ms
+2026-05-22 11:25:48 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:26:06 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he'
+2026-05-22 11:26:07 | DEBUG | babydoc.app | Retrieval score: 0.801 | top results: 5
+2026-05-22 11:26:07 | INFO | babydoc.app | Mode: data | Score: 0.801 | Baby context: no
+2026-05-22 11:26:07 | INFO | babydoc.app | Response time: 520ms
+2026-05-22 11:26:07 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:26:27 | INFO | babydoc.app | Incoming query: 'batao age'
+2026-05-22 11:26:27 | DEBUG | babydoc.app | Retrieval score: 0.500 | top results: 5
+2026-05-22 11:26:27 | INFO | babydoc.app | Mode: fallback | Score: 0.500 | Baby context: no
+2026-05-22 11:26:28 | INFO | babydoc.app | Response time: 637ms
+2026-05-22 11:26:28 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:27:10 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:27:31 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:27:34 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:27:53 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:28:15 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:28:18 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:28:52 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=None, age=None, gender=None
+2026-05-22 11:29:41 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:30:01 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:30:04 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:30:04 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=Sher, age=1 years 0 months 14 days, gender=MALE
+2026-05-22 11:32:11 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:32:35 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:32:39 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:32:39 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 11:33:08 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 11:33:13 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 11:34:52 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=Sher, age=1 years 0 months 14 days, gender=MALE
+2026-05-22 11:34:52 | INFO | babydoc.app | Incoming query: 'my baby has fever'
+2026-05-22 11:34:52 | DEBUG | babydoc.app | Retrieval score: 0.776 | top results: 5
+2026-05-22 11:34:52 | INFO | babydoc.app | Mode: data | Score: 0.776 | Baby context: yes
+2026-05-22 11:34:53 | INFO | babydoc.app | Response time: 907ms
+2026-05-22 11:34:53 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:35:38 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=Sher, age=1 years 0 months 14 days, gender=MALE
+2026-05-22 11:35:38 | INFO | babydoc.app | Incoming query: 'my babyka weight perfect he age ke hisab se'
+2026-05-22 11:35:38 | DEBUG | babydoc.app | Retrieval score: 0.674 | top results: 5
+2026-05-22 11:35:38 | INFO | babydoc.app | Mode: weak | Score: 0.674 | Baby context: yes
+2026-05-22 11:35:39 | INFO | babydoc.app | Response time: 777ms
+2026-05-22 11:35:39 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:36:06 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=Sher, age=1 years 0 months 14 days, gender=MALE
+2026-05-22 11:36:06 | INFO | babydoc.app | Incoming query: 'my babyka weight perfect he age ke hisab se , kitna weighth euska'
+2026-05-22 11:36:06 | DEBUG | babydoc.app | Retrieval score: 0.709 | top results: 5
+2026-05-22 11:36:06 | INFO | babydoc.app | Mode: data | Score: 0.709 | Baby context: yes
+2026-05-22 11:36:06 | INFO | babydoc.app | Response time: 548ms
+2026-05-22 11:36:06 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:36:54 | INFO | babydoc.app | Baby context loaded for user mohd@gmail.com — name=Sher, age=1 years 0 months 14 days, gender=MALE
+2026-05-22 11:46:39 | INFO | babydoc.app | Incoming query: 'my baby have fever'
+2026-05-22 11:46:39 | DEBUG | babydoc.app | Retrieval score: 0.774 | top results: 5
+2026-05-22 11:46:39 | INFO | babydoc.app | Mode: data | Score: 0.774 | Baby context: no
+2026-05-22 11:46:40 | INFO | babydoc.app | Response time: 827ms
+2026-05-22 11:46:40 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 11:47:09 | INFO | babydoc.app | Incoming query: 'my baby ka weight perfect he uski age ke hisab se?'
+2026-05-22 11:47:09 | DEBUG | babydoc.app | Retrieval score: 0.693 | top results: 5
+2026-05-22 11:47:09 | INFO | babydoc.app | Mode: weak | Score: 0.693 | Baby context: no
+2026-05-22 11:47:10 | INFO | babydoc.app | Response time: 843ms
+2026-05-22 11:47:10 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:28:23 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 12:30:08 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 12:30:13 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 12:30:13 | INFO | babydoc.app | Momify API shutting down.
+2026-05-22 12:31:06 | INFO | babydoc.app | Momify API starting up...
+2026-05-22 12:31:11 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-22 12:33:17 | INFO | babydoc.app | Incoming query: 'HI '
+2026-05-22 12:33:18 | DEBUG | babydoc.app | Retrieval score: 0.581 | top results: 5
+2026-05-22 12:33:18 | INFO | babydoc.app | Mode: weak | Score: 0.581 | Baby context: no
+2026-05-22 12:33:19 | INFO | babydoc.app | Response time: 1868ms
+2026-05-22 12:33:19 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:33:34 | INFO | babydoc.app | Incoming query: '\\baby ke age kitni he'
+2026-05-22 12:33:35 | DEBUG | babydoc.app | Retrieval score: 0.892 | top results: 5
+2026-05-22 12:33:35 | INFO | babydoc.app | Mode: data | Score: 0.892 | Baby context: no
+2026-05-22 12:33:36 | INFO | babydoc.app | Response time: 2200ms
+2026-05-22 12:33:36 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:35:40 | INFO | babydoc.app | Incoming query: 'how long breast milk can be stored'
+2026-05-22 12:35:40 | DEBUG | babydoc.app | Retrieval score: 0.967 | top results: 5
+2026-05-22 12:35:40 | INFO | babydoc.app | Mode: data | Score: 0.967 | Baby context: no
+2026-05-22 12:35:41 | INFO | babydoc.app | Response time: 911ms
+2026-05-22 12:35:41 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:35:44 | INFO | babydoc.app | Incoming query: 'my milk supply is low how to increase'
+2026-05-22 12:35:45 | DEBUG | babydoc.app | Retrieval score: 0.932 | top results: 5
+2026-05-22 12:35:45 | INFO | babydoc.app | Mode: data | Score: 0.932 | Baby context: no
+2026-05-22 12:35:46 | INFO | babydoc.app | Response time: 1430ms
+2026-05-22 12:35:46 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:35:48 | INFO | babydoc.app | Incoming query: 'my baby is not latching what can I do'
+2026-05-22 12:35:49 | DEBUG | babydoc.app | Retrieval score: 0.993 | top results: 5
+2026-05-22 12:35:49 | INFO | babydoc.app | Mode: data | Score: 0.993 | Baby context: no
+2026-05-22 12:35:50 | INFO | babydoc.app | Response time: 1834ms
+2026-05-22 12:35:50 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:35:53 | INFO | babydoc.app | Incoming query: 'I have breastfeeding problem my nipples got cracked and it hurts'
+2026-05-22 12:35:54 | DEBUG | babydoc.app | Retrieval score: 1.000 | top results: 5
+2026-05-22 12:35:54 | INFO | babydoc.app | Mode: data | Score: 1.000 | Baby context: no
+2026-05-22 12:35:55 | INFO | babydoc.app | Response time: 1271ms
+2026-05-22 12:35:55 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:35:58 | INFO | babydoc.app | Incoming query: 'how to clear blocked milk ducts'
+2026-05-22 12:35:58 | DEBUG | babydoc.app | Retrieval score: 0.999 | top results: 5
+2026-05-22 12:35:58 | INFO | babydoc.app | Mode: data | Score: 0.999 | Baby context: no
+2026-05-22 12:35:59 | INFO | babydoc.app | Response time: 1213ms
+2026-05-22 12:35:59 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-22 12:36:02 | INFO | babydoc.app | Incoming query: 'baby has fever what to give'
+2026-05-22 12:36:03 | DEBUG | babydoc.app | Retrieval score: 0.793 | top results: 5
+2026-05-22 12:36:03 | INFO | babydoc.app | Mode: data | Score: 0.793 | Baby context: no
+2026-05-22 12:36:03 | INFO | babydoc.app | Response time: 1506ms
+2026-05-22 12:36:03 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-25 12:00:31 | INFO | babydoc.app | Momify API starting up...
+2026-05-25 12:00:35 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-05-25 12:00:57 | INFO | babydoc.app | Incoming query: 'hi'
+2026-05-25 12:00:58 | DEBUG | babydoc.app | Retrieval score: 0.385 | top results: 5
+2026-05-25 12:00:58 | INFO | babydoc.app | Mode: fallback | Score: 0.385 | Baby context: no
+2026-05-25 12:00:59 | INFO | babydoc.app | Response time: 1893ms
+2026-05-25 12:00:59 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-25 15:54:28 | INFO | babydoc.app | Incoming query: "My 10 months old baby boy is not drinking water he hate it what can I do how I make him to drink water I added lemon also but he is continuously denying or crying alot whatever I can do\n I already did but everything got failed.  Is there any safe flavours which can I add into the water yesterday I gave him lil bit nimboo pani he he likes it. But inside nimboo pani there is sugar also that's why he likes it what\n can I do?]"
+2026-05-25 15:54:30 | DEBUG | babydoc.app | Retrieval score: 0.921 | top results: 5
+2026-05-25 15:54:30 | INFO | babydoc.app | Mode: data | Score: 0.921 | Baby context: no
+2026-05-25 15:54:31 | INFO | babydoc.app | Response time: 2766ms
+2026-05-25 15:54:31 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-25 15:58:37 | INFO | babydoc.app | Incoming query: 'Baby not drinking water what to do , age is 10 months old'
+2026-05-25 15:58:38 | DEBUG | babydoc.app | Retrieval score: 0.518 | top results: 5
+2026-05-25 15:58:38 | INFO | babydoc.app | Mode: weak | Score: 0.518 | Baby context: no
+2026-05-25 15:58:38 | INFO | babydoc.app | Response time: 1663ms
+2026-05-25 15:58:39 | ERROR | babydoc.app | DB log failed: column "created_at" of relation "chat_logs" does not exist
+LINE 8:                 created_at
+                        ^
+
+2026-05-25 16:01:27 | INFO | babydoc.app | Momify API shutting down.
