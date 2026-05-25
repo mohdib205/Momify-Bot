@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_URL = "http://72.61.173.6:8010"
+# API_URL = "http://127.0.0.1:8000/"
 
 
 st.set_page_config(

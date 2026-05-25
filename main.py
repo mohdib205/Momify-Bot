@@ -1,5 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Header
 from contextlib import asynccontextmanager
+from typing import Optional
 
 import psycopg2
 import os
@@ -17,6 +18,7 @@ from models.schemas import (
 
 from services.retriever import load_qa
 from services.chatbot import get_response
+from services.baby_context import *  # ← new
 
 qa_data = []
 
@@ -35,9 +37,23 @@ app = FastAPI(title="Momify API", lifespan=lifespan)
 
 
 @app.post("/chat", response_model=ChatResponse)
-def chat(req: ChatRequest):
+def chat(
+    req: ChatRequest,
+    authorization: Optional[str] = Header(default=None)  # ← new
+):
     try:
-        reply, mode, score = get_response(req.message, qa_data, req.history)
+        # Extract baby context from JWT if token is present
+        baby_context = ""
+        if authorization and authorization.startswith("Bearer "):
+            token        = authorization.removeprefix("Bearer ").strip()
+            baby_context = get_baby_context_from_token(token)
+
+        reply, mode, score = get_response(
+            req.message,
+            qa_data,
+            req.history,
+            baby_context  # ← new
+        )
         return ChatResponse(reply=reply, mode=mode, score=score)
 
     except Exception as e:
@@ -107,4 +123,22 @@ def health():
     return {
         "status": "ok",
         "qa_pairs_loaded": len(qa_data)
+    }
+
+
+
+@app.get("/test_baby_context")
+def test_baby_context(authorization: Optional[str] = Header(default=None)):
+    if not authorization or not authorization.startswith("Bearer "):
+        return {"error": "No token provided"}
+    
+    token        = authorization.removeprefix("Bearer ").strip()
+    user_id      = extract_user_id(token)
+    baby         = fetch_baby_details(token)
+    context      = get_baby_context_from_token(token)
+    
+    return {
+        "user_id_extracted": user_id,
+        "baby_raw":          baby,
+        "context_injected":  context
     }
