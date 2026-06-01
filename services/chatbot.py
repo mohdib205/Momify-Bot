@@ -22,6 +22,7 @@ client = Groq(api_key=GROQ_API_KEY)
 
 # ── Prescription filter ───────────────────────────────────────────────────────
 
+# Patterns that indicate a prescription-level medicine dose slipped through
 _PRESCRIPTION_PATTERNS = [
     r'\b\d+(\.\d+)?\s*(ml|mg|mcg|cc)\b',
     r'\bevery\s+\d+\s+hours?\b',
@@ -31,6 +32,28 @@ _PRESCRIPTION_PATTERNS = [
     r'\bdin\s+mein\s+\d+\s+baar\b',
     r'\b\d+\s+baar\s+(roz|daily|din)\b',
 ]
+
+# Patterns that indicate supplement/vitamin context — these should NOT trigger the filter
+# IU amounts (e.g. 400 IU, 600 IU) are standard supplement guidance, not prescriptions
+_SUPPLEMENT_WHITELIST_PATTERNS = [
+    r'\b\d+\s*IU\b',                          # 400 IU, 600 IU
+    r'\bvit(amin)?\s*[dD]\b',                 # Vitamin D, Vit D
+    r'\bvit(amin)?\s*[bB]\b',                 # Vitamin B
+    r'\biron\s+drops?\b',                     # iron drops
+    r'\bzinc\b',                              # zinc supplements
+    r'\bcalcium\b',                           # calcium
+    r'\bdepura\b',                            # Depura (Vit D brand)
+    r'\braricap\b',                           # Raricap (iron brand)
+    r'\bzincovit\b',                          # Zincovit
+    r'\bsporolac\b',                          # Sporolac (probiotic)
+    r'\bors\b',                               # ORS
+]
+
+
+def _is_supplement_context(text: str) -> bool:
+    """Returns True if the text is talking about supplements/vitamins, not medicines."""
+    text_lower = text.lower()
+    return any(re.search(p, text_lower) for p in _SUPPLEMENT_WHITELIST_PATTERNS)
 
 _DOCTOR_REDIRECT_EN = (
     "For the exact dose, frequency, and duration of any medicine, "
@@ -62,12 +85,17 @@ def _filter_prescription_response(response: str) -> str:
     if not _contains_prescription_detail(response):
         return response
 
+    # If this is supplement/vitamin context, don't filter — it's standard guidance
+    if _is_supplement_context(response):
+        return response
+
     sentences      = re.split(r'(?<=[.!?।])\s+', response)
     safe_sentences = []
     prescription_found = False
 
     for sentence in sentences:
-        if _contains_prescription_detail(sentence):
+        # Skip filtering if this sentence is supplement context
+        if _contains_prescription_detail(sentence) and not _is_supplement_context(sentence):
             prescription_found = True
         else:
             safe_sentences.append(sentence)
