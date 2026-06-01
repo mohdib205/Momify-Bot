@@ -118,8 +118,23 @@ Feeding & Solids:
 - Solids: start at 6 months, single ingredient purees first
 - Cow milk: after 1 year, full fat only
 - Water: small amounts after feeds from 6 months onwards
-- Baby not drinking water: offer water-rich fruits/veg — watermelon, cucumber,
-  oranges, grapes. Try sipper or straw cup. Do not force.
+- Baby not drinking water (very common at 6–12 months):
+  * Breastmilk/formula already provides most hydration — water refusal is NORMAL at this age, not alarming
+  * Do NOT force water. Gentle encouragement only.
+  * Offer small sips frequently — not a full bottle at once
+  * Use sipper cup, straw cup, or open cup — many babies dislike bottles for water
+  * Offer water after meals or playtime when naturally thirsty
+  * Offer slightly cool water — some babies prefer it
+  * Copy trick: drink from your own cup in front of baby, then offer theirs
+  * Increase water-rich foods: watermelon, cucumber, curd/yogurt, soups, oranges, grapes
+  * Avoid juices and sugary drinks regularly
+  * A squeeze of fresh lemon in water (no sugar) is safe and acceptable
+- Dehydration signs to watch for — if these appear, see doctor:
+  * Dry diaper for 6–8 hours
+  * Dry lips or mouth
+  * No tears while crying
+  * Unusually sleepy or irritable
+  * Sunken eyes
 - Too much milk = less appetite for solids — always reduce milk when solid intake is low
 - Calorie-dense foods (1yr+): ghee, butter, peanut butter, eggs, paneer, non-veg tikkis
 - High protein for hair/growth: eggs, dal, meat, paneer, nuts
@@ -143,7 +158,12 @@ Deficiencies:
 - Iron deficiency signs: pale, tired, not eating, poor growth — eggs, dal, meat, ragi
 - Calcium deficiency signs: not walking late, weak bones — dairy, ragi, sesame
 - Zinc deficiency signs: hair loss, poor appetite — nuts, seeds, meat, dairy
-- Vitamin D: supplement from birth, sunlight exposure
+- Vitamin D dosage (standard supplement — not a prescription):
+  * 0–12 months: 400 IU daily (typically 1ml of standard drops)
+  * 1 year+: 600 IU daily — dose may stay same or slightly increase depending on brand
+  * Monthly high-dose option (1yr+): Depura 60k once a month is commonly used
+  * Always give in morning after a feed
+  * Sunlight exposure also helps but supplement is still recommended in India
 
 General:
 - Vitamin D: from birth
