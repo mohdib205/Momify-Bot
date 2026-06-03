@@ -537,19 +537,40 @@ if user_input:
 
     with st.chat_message("assistant", avatar="🌸"):
         with st.spinner(""):
+
             try:
                 response = requests.post(
                     f"{API_URL}/chat",
-                    json={"message": user_input, "history": st.session_state.history},
+                    json={
+                        "message": user_input,
+                        "history": st.session_state.history
+                    },
                     timeout=30
                 )
-                data  = response.json()
-                reply = data.get("reply", "Something went wrong.")
-                mode  = data.get("mode",  "fallback")
-                score = data.get("score", 0.0)
-            except requests.exceptions.ConnectionError:
-                reply = "Unable to reach the server. Please try again in a moment."
-                mode  = "error"
+
+                st.write("Status Code:", response.status_code)
+
+                try:
+                    data = response.json()
+                    st.write("Response JSON:", data)
+
+                    reply = data.get("reply", "Something went wrong.")
+                    mode = data.get("mode", "fallback")
+                    score = data.get("score", 0.0)
+
+                except Exception as json_error:
+                    st.error(f"JSON Parse Error: {json_error}")
+                    st.code(response.text)
+
+                    reply = "JSON parsing failed."
+                    mode = "error"
+                    score = 0.0
+
+            except Exception as e:
+                st.error(f"Actual Exception: {repr(e)}")
+
+                reply = f"Connection failed: {repr(e)}"
+                mode = "error"
                 score = 0.0
 
         st.markdown(reply)
