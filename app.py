@@ -300,7 +300,20 @@ div[data-testid="stChatMessage"] span {
 </style>
 """, unsafe_allow_html=True)
 
+import requests
+import streamlit as st
 
+try:
+    r = requests.get(
+        "http://72.61.173.6:8010/health",
+        timeout=10
+    )
+
+    st.success(f"Health OK: {r.status_code}")
+    st.write(r.text)
+
+except Exception as e:
+    st.error(f"HEALTH CHECK FAILED: {repr(e)}")
 # ════════════════════════════════════════
 # DB
 # ════════════════════════════════════════
