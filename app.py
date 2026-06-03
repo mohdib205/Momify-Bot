@@ -7,8 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_URL = "https://context-carl-dec-gnu.trycloudflare.com"
+# API_URL = "http://72.61.173.6:8010"
+API_URL = "https://bloomberg-papers-boundaries-rip.trycloudflare.com/"
 # API_URL = "http://127.0.0.1:8000/"
+
 
 
 st.set_page_config(
@@ -535,45 +537,24 @@ if user_input:
         st.markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
 
-with st.chat_message("assistant", avatar="🌸"):
-    with st.spinner(""):
-
-        try:
-            response = requests.post(
-                f"{API_URL}/chat",
-                json={
-                    "message": user_input,
-                    "history": st.session_state.history
-                },
-                timeout=30
-            )
-
-            st.write("Status Code:", response.status_code)
-
+    with st.chat_message("assistant", avatar="🌸"):
+        with st.spinner(""):
             try:
-                data = response.json()
-                st.write("Response JSON:", data)
-
+                response = requests.post(
+                    f"{API_URL}/chat",
+                    json={"message": user_input, "history": st.session_state.history},
+                    timeout=30
+                )
+                data  = response.json()
                 reply = data.get("reply", "Something went wrong.")
-                mode = data.get("mode", "fallback")
+                mode  = data.get("mode",  "fallback")
                 score = data.get("score", 0.0)
-
-            except Exception as json_error:
-                st.error(f"JSON Parse Error: {json_error}")
-                st.code(response.text)
-
-                reply = "JSON parsing failed."
-                mode = "error"
+            except requests.exceptions.ConnectionError:
+                reply = "Unable to reach the server. Please try again in a moment."
+                mode  = "error"
                 score = 0.0
 
-        except Exception as e:
-            st.error(f"Actual Exception: {repr(e)}")
-
-            reply = f"Connection failed: {repr(e)}"
-            mode = "error"
-            score = 0.0
-
-    st.markdown(reply)
+        st.markdown(reply)
 
         if mode != "error":
             badge = {"data":"badge-data","weak":"badge-weak",
