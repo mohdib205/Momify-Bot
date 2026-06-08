@@ -81,12 +81,12 @@ def _is_hinglish(text: str) -> bool:
     return sum(1 for w in words if w in hinglish_markers) >= 2
 
 
-def _filter_prescription_response(response: str) -> str:
+def _filter_prescription_response(response: str, query: str = "") -> str:
     if not _contains_prescription_detail(response):
         return response
 
-    # If this is supplement/vitamin context, don't filter — it's standard guidance
-    if _is_supplement_context(response):
+    # If query OR response is supplement/vitamin context, skip filter entirely
+    if _is_supplement_context(response) or _is_supplement_context(query):
         return response
 
     sentences      = re.split(r'(?<=[.!?।])\s+', response)
@@ -94,7 +94,6 @@ def _filter_prescription_response(response: str) -> str:
     prescription_found = False
 
     for sentence in sentences:
-        # Skip filtering if this sentence is supplement context
         if _contains_prescription_detail(sentence) and not _is_supplement_context(sentence):
             prescription_found = True
         else:
@@ -135,21 +134,39 @@ def get_response(
         )
         return safety_msg, "emergency", 0.0
 
-    # 2. Retrieve from dataset
+    # 2. Detect language — hard instruction injected into every user message
+    hinglish_markers = [
+        "mere", "mera", "meri", "hai", "hain", "kya", "karo", "karein",
+        "aur", "nahi", "nhi", "baby ko", "batao", "btao", "he", "ho",
+        "doodh", "bukhar", "sardi", "thoda", "zyada", "din", "raat",
+        "abhi", "pehle", "baad", "kyun", "kaise", "kab", "kuch", "bhi",
+        "uske", "uski", "uska", "woh", "hum", "tum", "app", "please bataiye",
+        "kindly btaye", "plz", "hy doctor", "hlo"
+    ]
+    msg_lower = message.lower()
+    is_hinglish = sum(1 for w in hinglish_markers if w in msg_lower) >= 1
+    lang_instruction = (
+        "IMPORTANT: Reply in Hinglish (Hindi + English mix). The parent wrote in Hinglish."
+        if is_hinglish else
+        "IMPORTANT: Reply in English only. The parent wrote in English. Do NOT use Hindi or Hinglish."
+    )
+
+    # 3. Retrieve from dataset
     best_score, retrieved = retrieve(message, qa_data)
     app_logger.debug(f"Retrieval score: {best_score:.3f} | top results: {len(retrieved)}")
 
-    # 3. Decide mode and build user message
+    # 4. Decide mode and build user message
     if best_score >= HIGH_CONFIDENCE:
         context  = build_context(retrieved)
         system   = STRICT_PROMPT
-        user_msg = f"Retrieved Q&A pairs:\n{context}\nParent's question: {message}"
+        user_msg = f"{lang_instruction}\n\nRetrieved Q&A pairs:\n{context}\nParent's question: {message}"
         mode     = "data"
 
     elif best_score >= LOW_CONFIDENCE:
         context  = build_context(retrieved)
         system   = STRICT_PROMPT
         user_msg = (
+            f"{lang_instruction}\n\n"
             f"Partially relevant Q&A pairs:\n{context}\n"
             f"Parent's question: {message}\n"
             f"If the above pairs are not relevant, use your own knowledge."
@@ -158,7 +175,7 @@ def get_response(
 
     else:
         system   = KNOWLEDGE_PROMPT
-        user_msg = f"Parent's question: {message}"
+        user_msg = f"{lang_instruction}\n\nParent's question: {message}"
         mode     = "fallback"
 
     # 4. Inject baby context into system prompt if available
@@ -187,7 +204,8 @@ def get_response(
         raise
 
     # 7. Prescription filter
-    reply = _filter_prescription_response(raw_reply)
+    # Pass both query and reply — if query is supplement context, don't filter
+    reply = _filter_prescription_response(raw_reply, message)
     if reply != raw_reply:
         app_logger.warning("Prescription filter triggered.")
 
