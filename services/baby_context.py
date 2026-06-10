@@ -3,6 +3,7 @@ services/baby_context.py
 
 Fetches baby details from:
 GET https://api.himomify.com/babies/user
+BABY_API_URL=https://api.himomify.com
 Authorization: Bearer <token>
 
 Response is a list — we use the first baby.
@@ -69,7 +70,7 @@ def fetch_baby_details(token: str) -> dict | None:
     """
     try:
         response = requests.get(
-            f"{BABY_API_URL}",
+            f"{BABY_API_URL}/babies/user",
             headers={
                 "Authorization": f"Bearer {token}",
                 "Content-Type": "application/json"
