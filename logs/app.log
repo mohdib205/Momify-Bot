@@ -5005,3 +5005,19 @@ LINE 8:                 created_at
 2026-05-25 16:23:20 | INFO | babydoc.app | Momify API shutting down.
 2026-05-25 16:23:49 | INFO | babydoc.app | Momify API starting up...
 2026-05-25 16:23:53 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-10 14:49:42 | INFO | babydoc.app | Momify API starting up...
+2026-06-10 14:51:34 | INFO | babydoc.app | Momify API starting up...
+2026-06-10 14:51:38 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-10 14:59:35 | INFO | babydoc.app | Momify API shutting down.
+2026-06-10 15:02:02 | INFO | babydoc.app | Momify API starting up...
+2026-06-10 15:02:07 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-10 15:02:49 | INFO | babydoc.app | Momify API shutting down.
+2026-06-10 15:03:15 | INFO | babydoc.app | Momify API starting up...
+2026-06-10 15:03:19 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-10 15:03:33 | INFO | babydoc.app | Incoming query: 'hi'
+2026-06-10 15:03:33 | DEBUG | babydoc.app | Retrieval score: 0.385 | top results: 5
+2026-06-10 15:03:33 | INFO | babydoc.app | Mode: fallback | Score: 0.385 | Baby context: no
+2026-06-10 15:03:34 | INFO | babydoc.app | Response time: 1330ms
+2026-06-10 15:03:34 | ERROR | babydoc.app | DB log failed: connection to server at "72.61.173.6", port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+2026-06-10 15:04:23 | INFO | babydoc.app | Momify API shutting down.
