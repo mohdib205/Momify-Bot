@@ -78,7 +78,7 @@ conn.commit()
 cur.close()
 conn.close()
 
-print("✅ Tables created successfully:")
+print(" Tables created successfully:")
 print("   → chat_logs")
 print("   → doctor_feedback")
 print("   → indexes on verdict, failure_reason, mode, reviewed_by")
