@@ -9,8 +9,8 @@ load_dotenv()
 
 # API_URL = "http://72.61.173.6:8010"
 # API_URL = "https://bot.himomify.com"
-# API_URL = "http://127.0.0.1:8000/"
-API_URL = "http://187.127.146.155:8010/"
+API_URL = "http://127.0.0.1:8000/"
+# API_URL = "http://187.127.146.155:8010/"
 
 
 

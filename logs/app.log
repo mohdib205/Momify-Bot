@@ -5024,3 +5024,81 @@ LINE 8:                 created_at
 2026-06-10 15:04:44 | INFO | babydoc.app | Momify API starting up...
 2026-06-10 15:04:47 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
 2026-06-10 15:04:47 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 15:58:59 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 15:59:03 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 15:59:03 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 15:59:34 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 15:59:37 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 15:59:38 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 16:00:20 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 16:00:24 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 16:32:38 | INFO | babydoc.app | Incoming query: 'hi'
+2026-06-12 16:32:38 | DEBUG | babydoc.app | Retrieval score: 0.385 | top results: 5
+2026-06-12 16:32:38 | INFO | babydoc.app | Mode: fallback | Score: 0.385 | Baby context: no
+2026-06-12 16:32:39 | INFO | babydoc.app | Response time: 1442ms
+2026-06-12 16:32:39 | ERROR | babydoc.app | Unhandled error in /chat: log_chat() got an unexpected keyword argument 'parent_id'
+2026-06-12 16:38:08 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 16:38:44 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 16:38:48 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 16:38:48 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 16:39:43 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 16:39:47 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 16:58:30 | INFO | babydoc.app | Incoming query: 'hi'
+2026-06-12 16:58:31 | DEBUG | babydoc.app | Retrieval score: 0.385 | top results: 5
+2026-06-12 16:58:31 | INFO | babydoc.app | Mode: fallback | Score: 0.385 | Baby context: no
+2026-06-12 16:58:31 | INFO | babydoc.app | Response time: 1310ms
+2026-06-12 16:58:45 | INFO | babydoc.app | Incoming query: 'mere baby ko fever he'
+2026-06-12 16:58:45 | DEBUG | babydoc.app | Retrieval score: 0.985 | top results: 5
+2026-06-12 16:58:45 | INFO | babydoc.app | Mode: data | Score: 0.985 | Baby context: no
+2026-06-12 16:58:46 | INFO | babydoc.app | Response time: 1151ms
+2026-06-12 17:03:24 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 17:03:56 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 17:04:00 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 17:08:55 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 17:09:26 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 17:09:30 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 17:09:30 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 17:10:09 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 17:10:13 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 17:13:19 | INFO | babydoc.app | Momify API shutting down.
+2026-06-12 17:13:51 | INFO | babydoc.app | Momify API starting up...
+2026-06-12 17:13:56 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-12 17:14:42 | INFO | babydoc.app | Incoming query: 'mere baby ko kya khilaon?'
+2026-06-12 17:14:42 | DEBUG | babydoc.app | Retrieval score: 0.725 | top results: 5
+2026-06-12 17:14:42 | INFO | babydoc.app | Mode: data | Score: 0.725 | Baby context: no
+2026-06-12 17:14:43 | INFO | babydoc.app | Response time: 1610ms
+2026-06-12 17:15:06 | WARNING | babydoc.app | Parent saad@example.com has 3 babies but no baby_id sent
+2026-06-12 17:15:06 | INFO | babydoc.app | Incoming query: 'mere baby ko kya khilaon?'
+2026-06-12 17:15:06 | DEBUG | babydoc.app | Retrieval score: 0.725 | top results: 5
+2026-06-12 17:15:06 | INFO | babydoc.app | Mode: data | Score: 0.725 | Baby context: no
+2026-06-12 17:15:07 | INFO | babydoc.app | Response time: 1501ms
+2026-06-12 17:15:32 | WARNING | babydoc.app | Parent saad@example.com has 3 babies but no baby_id sent
+2026-06-12 17:15:32 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-12 17:15:33 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-12 17:15:33 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-12 17:15:33 | INFO | babydoc.app | Response time: 1378ms
+2026-06-12 17:16:58 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=12, age=0 years 11 months 1 days
+2026-06-12 17:16:58 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-12 17:16:59 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-12 17:16:59 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-12 17:16:59 | INFO | babydoc.app | Response time: 1549ms
+2026-06-12 20:38:31 | WARNING | babydoc.app | JWT token expired
+2026-06-12 20:38:31 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-12 20:38:32 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-12 20:38:32 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-12 20:38:32 | INFO | babydoc.app | Response time: 1434ms
+2026-06-12 20:38:48 | WARNING | babydoc.app | JWT token expired
+2026-06-12 20:38:48 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-12 20:38:49 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-12 20:38:49 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-12 20:38:50 | INFO | babydoc.app | Response time: 1454ms
+2026-06-15 10:40:30 | INFO | babydoc.app | Momify API starting up...
+2026-06-15 10:40:40 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-15 10:40:40 | INFO | babydoc.app | Momify API shutting down.
+2026-06-15 10:41:40 | INFO | babydoc.app | Momify API starting up...
+2026-06-15 10:41:49 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-15 10:42:13 | INFO | babydoc.app | Incoming query: 'hi my baby have fever\n\n'
+2026-06-15 10:42:16 | DEBUG | babydoc.app | Retrieval score: 0.990 | top results: 5
+2026-06-15 10:42:16 | INFO | babydoc.app | Mode: data | Score: 0.990 | Baby context: no
+2026-06-15 10:42:18 | INFO | babydoc.app | Response time: 4845ms
+2026-06-15 11:25:35 | INFO | babydoc.app | Momify API shutting down.

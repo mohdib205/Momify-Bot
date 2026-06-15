@@ -56,14 +56,13 @@ def _is_supplement_context(text: str) -> bool:
     return any(re.search(p, text_lower) for p in _SUPPLEMENT_WHITELIST_PATTERNS)
 
 _DOCTOR_REDIRECT_EN = (
-    "For the exact dose, frequency, and duration of any medicine, "
-    "call your pediatrician directly. "
-    "Every baby's weight and condition is different."
+    "For personalised guidance, you can speak to our available pediatricians here: "
+    "https://www.google.com/"
 )
 
 _DOCTOR_REDIRECT_HI = (
-    "Exact dose, frequency aur duration ke liye apne doctor ko call karein. "
-    "Har baby ka weight aur condition alag hoti hai."
+    "Personalised guidance ke liye, hamare available pediatricians se baat karein: "
+    "https://www.google.com/"
 )
 
 
@@ -115,7 +114,9 @@ def get_response(
     message:      str,
     qa_data:      list,
     history:      list,
-    baby_context: str = ""
+    baby_context: str = "",
+    parent_id:    str | None = None,
+    baby_id:      str | None = None
 ) -> tuple[str, str, float]:
 
     start_time = time.time()
@@ -218,7 +219,9 @@ def get_response(
         reply=reply,
         mode=mode,
         score=round(best_score, 3),
-        response_time_ms=response_time_ms
+        response_time_ms=response_time_ms,
+        parent_id=parent_id,
+        baby_id=baby_id
     )
 
     return reply, mode, round(best_score, 3)
