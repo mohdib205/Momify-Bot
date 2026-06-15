@@ -1,33 +1,33 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class Message(BaseModel):
-    role: str       # "user" or "assistant"
+    role:    str
     content: str
 
 
 class ChatRequest(BaseModel):
     message: str
     history: list[Message] = []
+    baby_id: Optional[int] = None   # ← parent app sends selected baby ID
 
 
 class ChatResponse(BaseModel):
     reply: str
-    mode: str       # data / weak / fallback / emergency
+    mode:  str
     score: float
-
-from pydantic import BaseModel
 
 
 class FeedbackRequest(BaseModel):
-    query: str
-    bot_response: str
-    mode: str
-    score: float
-    verdict: str
+    query:          str
+    bot_response:   str
+    mode:           str
+    score:          float
+    verdict:        str
     failure_reason: str = ""
-    doctor_notes: str = ""
-    reviewed_by: str
+    doctor_notes:   str = ""
+    reviewed_by:    str
 
 
 class FeedbackResponse(BaseModel):

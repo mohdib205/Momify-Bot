@@ -26,9 +26,22 @@ cur.execute("""
         mode             VARCHAR(20) NOT NULL,
         score            FLOAT,
         response_time_ms FLOAT,
+        parent_id        VARCHAR(100),   -- extracted from JWT token
+        baby_id          VARCHAR(50),    -- selected baby ID
         created_at       TIMESTAMP   DEFAULT NOW()
     );
 """)
+
+# ── Migration: add parent_id and baby_id if table already exists ─────────────
+cur.execute("""
+    ALTER TABLE chat_logs
+    ADD COLUMN IF NOT EXISTS parent_id VARCHAR(100),
+    ADD COLUMN IF NOT EXISTS baby_id   VARCHAR(50);
+""")
+
+# ── Indexes on chat_logs for per-user analysis ───────────────────────────────
+cur.execute("CREATE INDEX IF NOT EXISTS idx_chat_logs_parent_id ON chat_logs (parent_id);")
+cur.execute("CREATE INDEX IF NOT EXISTS idx_chat_logs_baby_id   ON chat_logs (baby_id);")
 
 # ── Table 2: doctor_feedback ────────────────────────────────────────────────
 cur.execute("""
@@ -78,7 +91,7 @@ conn.commit()
 cur.close()
 conn.close()
 
-print(" Tables created successfully:")
-print("   → chat_logs")
+print(" Tables created/updated successfully:")
+print("   → chat_logs (with parent_id, baby_id)")
 print("   → doctor_feedback")
-print("   → indexes on verdict, failure_reason, mode, reviewed_by")
+print("   → indexes on verdict, failure_reason, mode, reviewed_by, parent_id, baby_id")
