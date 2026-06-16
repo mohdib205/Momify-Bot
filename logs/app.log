@@ -5170,3 +5170,76 @@ LINE 8:                 created_at
 2026-06-16 12:54:15 | INFO | babydoc.app | Momify API starting up...
 2026-06-16 12:54:20 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
 2026-06-16 13:03:46 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 13:04:22 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 13:04:26 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:33:29 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:34:21 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:34:30 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:46:16 | WARNING | babydoc.app | JWT token expired
+2026-06-16 15:46:16 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 15:46:16 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 15:46:17 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 15:46:17 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-16 15:46:18 | INFO | babydoc.app | Response time: 2072ms
+2026-06-16 15:48:10 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:50:09 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:50:15 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:50:15 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:51:02 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:51:11 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:55:43 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:56:31 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:56:35 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:57:03 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:57:34 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:57:38 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:57:38 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:58:09 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:58:13 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:58:13 | WARNING | babydoc.app | JWT token expired
+2026-06-16 15:58:13 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 15:58:13 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 15:58:13 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 15:58:13 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-16 15:58:14 | INFO | babydoc.app | Response time: 1794ms
+2026-06-16 15:58:31 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 15:59:13 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 15:59:22 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 15:59:22 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 16:00:13 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 16:00:17 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 16:00:17 | WARNING | babydoc.app | JWT token expired
+2026-06-16 16:00:17 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 16:00:17 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 16:00:18 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 16:00:18 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-16 16:00:19 | INFO | babydoc.app | Response time: 2015ms
+2026-06-16 16:00:40 | DEBUG | babydoc.app | Baby context: cache miss, calling API
+2026-06-16 16:00:40 | INFO | babydoc.app | Baby context loaded — parent=15, baby=None, id=12, age=0 years 11 months 5 days
+2026-06-16 16:00:40 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 16:00:40 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 16:00:41 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 16:00:41 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 16:00:42 | INFO | babydoc.app | Response time: 1738ms
+2026-06-16 16:00:57 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 16:00:57 | INFO | babydoc.app | Baby context loaded — parent=15, baby=None, id=12, age=0 years 11 months 5 days
+2026-06-16 16:00:57 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 16:00:57 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 16:00:58 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 16:00:58 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 16:00:58 | INFO | babydoc.app | Response time: 1619ms
+2026-06-16 16:01:09 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 16:01:09 | WARNING | babydoc.app | Parent 15 has 3 babies but no baby_id sent
+2026-06-16 16:01:09 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 16:01:09 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 16:01:10 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 16:01:10 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-16 16:01:11 | INFO | babydoc.app | Response time: 1678ms
+2026-06-16 16:01:31 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 16:01:31 | INFO | babydoc.app | Baby context loaded — parent=15, baby=None, id=12, age=0 years 11 months 5 days
+2026-06-16 16:01:31 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 16:01:31 | DEBUG | babydoc.app | Language detected: Hinglish
+2026-06-16 16:01:32 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 16:01:32 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 16:01:32 | INFO | babydoc.app | Response time: 1531ms
+2026-06-16 17:07:43 | INFO | babydoc.app | Momify API shutting down.
