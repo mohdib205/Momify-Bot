@@ -22,7 +22,6 @@ client = Groq(api_key=GROQ_API_KEY)
 
 # ── Prescription filter ───────────────────────────────────────────────────────
 
-# Patterns that indicate a prescription-level medicine dose slipped through
 _PRESCRIPTION_PATTERNS = [
     r'\b\d+(\.\d+)?\s*(ml|mg|mcg|cc)\b',
     r'\bevery\s+\d+\s+hours?\b',
@@ -33,25 +32,22 @@ _PRESCRIPTION_PATTERNS = [
     r'\b\d+\s+baar\s+(roz|daily|din)\b',
 ]
 
-# Patterns that indicate supplement/vitamin context — these should NOT trigger the filter
-# IU amounts (e.g. 400 IU, 600 IU) are standard supplement guidance, not prescriptions
 _SUPPLEMENT_WHITELIST_PATTERNS = [
-    r'\b\d+\s*IU\b',                          # 400 IU, 600 IU
-    r'\bvit(amin)?\s*[dD]\b',                 # Vitamin D, Vit D
-    r'\bvit(amin)?\s*[bB]\b',                 # Vitamin B
-    r'\biron\s+drops?\b',                     # iron drops
-    r'\bzinc\b',                              # zinc supplements
-    r'\bcalcium\b',                           # calcium
-    r'\bdepura\b',                            # Depura (Vit D brand)
-    r'\braricap\b',                           # Raricap (iron brand)
-    r'\bzincovit\b',                          # Zincovit
-    r'\bsporolac\b',                          # Sporolac (probiotic)
-    r'\bors\b',                               # ORS
+    r'\b\d+\s*IU\b',
+    r'\bvit(amin)?\s*[dD]\b',
+    r'\bvit(amin)?\s*[bB]\b',
+    r'\biron\s+drops?\b',
+    r'\bzinc\b',
+    r'\bcalcium\b',
+    r'\bdepura\b',
+    r'\braricap\b',
+    r'\bzincovit\b',
+    r'\bsporolac\b',
+    r'\bors\b',
 ]
 
 
 def _is_supplement_context(text: str) -> bool:
-    """Returns True if the text is talking about supplements/vitamins, not medicines."""
     text_lower = text.lower()
     return any(re.search(p, text_lower) for p in _SUPPLEMENT_WHITELIST_PATTERNS)
 
@@ -84,7 +80,6 @@ def _filter_prescription_response(response: str, query: str = "") -> str:
     if not _contains_prescription_detail(response):
         return response
 
-    # If query OR response is supplement/vitamin context, skip filter entirely
     if _is_supplement_context(response) or _is_supplement_context(query):
         return response
 
@@ -106,6 +101,30 @@ def _filter_prescription_response(response: str, query: str = "") -> str:
         clean_response = f"{clean_response}{separator}⚠️ {redirect}"
 
     return clean_response
+
+
+# ── Language detection ────────────────────────────────────────────────────────
+
+# Only unambiguous Hinglish/Hindi words — no English words or common abbreviations
+_HINGLISH_MARKERS = [
+    "mere", "mera", "meri", "hai", "hain", "kya", "karo", "karein",
+    "aur", "nahi", "nhi", "baby ko", "batao", "btao",
+    "doodh", "bukhar", "sardi", "thoda", "zyada", "din", "raat",
+    "abhi", "pehle", "baad", "kyun", "kaise", "kab", "kuch", "bhi",
+    "uske", "uski", "uska", "woh", "hum", "tum",
+    "please bataiye", "kindly btaye", "hy doctor",
+    "bata", "dena", "lena", "karna", "hoga", "chahiye",
+    "theek", "bilkul", "achha", "bahut", "bohot",
+]
+
+def _detect_hinglish(message: str) -> bool:
+    """
+    Returns True only if 2+ unambiguous Hinglish markers are found.
+    Threshold of 2 prevents a single stray word from flipping the language.
+    """
+    msg_lower = message.lower()
+    matches = sum(1 for marker in _HINGLISH_MARKERS if marker in msg_lower)
+    return matches >= 2
 
 
 # ── Main response function ────────────────────────────────────────────────────
@@ -135,22 +154,14 @@ def get_response(
         )
         return safety_msg, "emergency", 0.0
 
-    # 2. Detect language — hard instruction injected into every user message
-    hinglish_markers = [
-        "mere", "mera", "meri", "hai", "hain", "kya", "karo", "karein",
-        "aur", "nahi", "nhi", "baby ko", "batao", "btao", "he", "ho",
-        "doodh", "bukhar", "sardi", "thoda", "zyada", "din", "raat",
-        "abhi", "pehle", "baad", "kyun", "kaise", "kab", "kuch", "bhi",
-        "uske", "uski", "uska", "woh", "hum", "tum", "app", "please bataiye",
-        "kindly btaye", "plz", "hy doctor", "hlo"
-    ]
-    msg_lower = message.lower()
-    is_hinglish = sum(1 for w in hinglish_markers if w in msg_lower) >= 1
+    # 2. Detect language — injected as hard instruction into every user message
+    is_hinglish = _detect_hinglish(message)
     lang_instruction = (
-        "IMPORTANT: Reply in Hinglish (Hindi + English mix). The parent wrote in Hinglish."
+        "LANGUAGE INSTRUCTION: The parent wrote in Hinglish. Reply in Hinglish only. Do NOT reply in English."
         if is_hinglish else
-        "IMPORTANT: Reply in English only. The parent wrote in English. Do NOT use Hindi or Hinglish."
+        "LANGUAGE INSTRUCTION: The parent wrote in English. Reply in English only. Do NOT use any Hindi or Hinglish words."
     )
+    app_logger.debug(f"Language detected: {'Hinglish' if is_hinglish else 'English'}")
 
     # 3. Retrieve from dataset
     best_score, retrieved = retrieve(message, qa_data)
@@ -179,19 +190,19 @@ def get_response(
         user_msg = f"{lang_instruction}\n\nParent's question: {message}"
         mode     = "fallback"
 
-    # 4. Inject baby context into system prompt if available
+    # 5. Inject baby context into system prompt if available
     if baby_context:
         system = system + f"\n\n{baby_context}"
 
     app_logger.info(f"Mode: {mode} | Score: {best_score:.3f} | Baby context: {'yes' if baby_context else 'no'}")
 
-    # 5. Build messages with history
+    # 6. Build messages with history
     messages = [{"role": "system", "content": system}]
     for msg in history:
         messages.append({"role": msg.role, "content": msg.content})
     messages.append({"role": "user", "content": user_msg})
 
-    # 6. Call Groq
+    # 7. Call Groq
     try:
         response = client.chat.completions.create(
             model=MODEL,
@@ -204,8 +215,7 @@ def get_response(
         app_logger.error(f"Groq API error: {e}")
         raise
 
-    # 7. Prescription filter
-    # Pass both query and reply — if query is supplement context, don't filter
+    # 8. Prescription filter
     reply = _filter_prescription_response(raw_reply, message)
     if reply != raw_reply:
         app_logger.warning("Prescription filter triggered.")
@@ -213,7 +223,7 @@ def get_response(
     response_time_ms = (time.time() - start_time) * 1000
     app_logger.info(f"Response time: {response_time_ms:.0f}ms")
 
-    # 8. Log
+    # 9. Log
     log_chat(
         query=message,
         reply=reply,

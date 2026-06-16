@@ -6,15 +6,21 @@ Changes:
 - If baby_id given → fetch that specific baby
 - If baby_id not given → return all babies (for selector)
 - get_baby_context_from_token() accepts optional baby_id
+- fetch_all_babies() now has TTL cache (5 min) — fixes 43s latency
 """
 
 import os
+import time
 import requests
 import jwt
 from core.logger import app_logger
 
 BABY_API_URL = os.environ.get("BABY_API_URL", "https://api.himomify.com")
 JWT_SECRET   = os.environ.get("JWT_SECRET", "")
+
+# ── TTL Cache ─────────────────────────────────────────────────────────────────
+_baby_cache: dict = {}
+_CACHE_TTL = 300  # 5 minutes — baby profile rarely changes
 
 
 def extract_user_id(token: str) -> str | None:
@@ -41,20 +47,31 @@ def extract_user_id(token: str) -> str | None:
 def fetch_all_babies(token: str) -> list:
     """
     Returns list of all babies for this parent.
-    Used to determine if selector should be shown.
+    Caches result for 5 minutes — avoids hitting baby API on every request.
     """
+    cache_key = token[-20:]
+    now = time.time()
+
+    # Cache hit
+    if cache_key in _baby_cache:
+        data, ts = _baby_cache[cache_key]
+        if now - ts < _CACHE_TTL:
+            app_logger.debug("Baby context: cache hit")
+            return data
+
+    # Cache miss — call the API
+    app_logger.debug("Baby context: cache miss, calling API")
     try:
         response = requests.get(
             f"{BABY_API_URL}/babies/user",
             headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-            timeout=5
+            timeout=3
         )
         if response.status_code == 200:
             data = response.json()
-            if isinstance(data, list):
-                return data
-            elif isinstance(data, dict):
-                return [data]
+            babies = data if isinstance(data, list) else [data]
+            _baby_cache[cache_key] = (babies, now)
+            return babies
         app_logger.warning(f"Baby API returned {response.status_code}")
         return []
     except requests.exceptions.Timeout:

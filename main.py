@@ -1,6 +1,10 @@
-from fastapi import FastAPI, HTTPException, Header
+from fastapi import FastAPI, HTTPException, Header, Request
 from contextlib import asynccontextmanager
 from typing import Optional
+
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 
 import psycopg2
 import os
@@ -22,6 +26,8 @@ from services.baby_context import get_baby_context_from_token, extract_user_id, 
 
 qa_data = []
 
+limiter = Limiter(key_func=get_remote_address)
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,10 +40,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Momify API", lifespan=lifespan)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 @app.post("/chat", response_model=ChatResponse)
+@limiter.limit("20/minute")
 def chat(
+    request: Request,
     req: ChatRequest,
     authorization: Optional[str] = Header(default=None)
 ):
@@ -50,7 +60,7 @@ def chat(
             token = authorization.removeprefix("Bearer ").strip()
             baby_context, parent_id, baby_id_str = get_baby_context_from_token(
                 token,
-                baby_id=req.baby_id  # None if not sent, auto-selects if single baby
+                baby_id=req.baby_id
             )
 
         reply, mode, score = get_response(
@@ -105,9 +115,9 @@ def health():
 def test_baby_context(authorization: Optional[str] = Header(default=None)):
     if not authorization or not authorization.startswith("Bearer "):
         return {"error": "No token provided"}
-    token        = authorization.removeprefix("Bearer ").strip()
-    user_id      = extract_user_id(token)
-    babies       = fetch_all_babies(token)
+    token             = authorization.removeprefix("Bearer ").strip()
+    user_id           = extract_user_id(token)
+    babies            = fetch_all_babies(token)
     context, pid, bid = get_baby_context_from_token(token)
     return {
         "user_id_extracted": user_id,
@@ -115,4 +125,4 @@ def test_baby_context(authorization: Optional[str] = Header(default=None)):
         "babies":            babies,
         "auto_selected":     bid,
         "context_injected":  context
-    }   
+    }

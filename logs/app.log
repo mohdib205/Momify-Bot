@@ -5102,3 +5102,68 @@ LINE 8:                 created_at
 2026-06-15 10:42:16 | INFO | babydoc.app | Mode: data | Score: 0.990 | Baby context: no
 2026-06-15 10:42:18 | INFO | babydoc.app | Response time: 4845ms
 2026-06-15 11:25:35 | INFO | babydoc.app | Momify API shutting down.
+2026-06-15 11:53:02 | INFO | babydoc.app | Momify API starting up...
+2026-06-15 11:53:05 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-15 14:50:56 | WARNING | babydoc.app | JWT token expired
+2026-06-15 14:50:56 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-15 14:50:57 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-15 14:50:57 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-15 14:50:58 | INFO | babydoc.app | Response time: 2050ms
+2026-06-16 11:59:02 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 12:00:03 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 12:00:07 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 12:00:07 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 12:00:48 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 12:00:52 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 12:01:47 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 12:02:19 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 12:02:25 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 12:03:18 | INFO | babydoc.app | Incoming query: 'hello'
+2026-06-16 12:03:19 | DEBUG | babydoc.app | Retrieval score: 0.075 | top results: 5
+2026-06-16 12:03:19 | INFO | babydoc.app | Mode: fallback | Score: 0.075 | Baby context: no
+2026-06-16 12:03:19 | INFO | babydoc.app | Response time: 1172ms
+2026-06-16 12:04:46 | WARNING | babydoc.app | JWT token expired
+2026-06-16 12:04:46 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:04:47 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:04:47 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: no
+2026-06-16 12:04:48 | INFO | babydoc.app | Response time: 1652ms
+2026-06-16 12:05:08 | DEBUG | babydoc.app | Baby context: cache miss, calling API
+2026-06-16 12:05:08 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=11, age=5 years 11 months 5 days
+2026-06-16 12:05:08 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:05:09 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:05:09 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:05:10 | INFO | babydoc.app | Response time: 1542ms
+2026-06-16 12:05:20 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 12:05:20 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=11, age=5 years 11 months 5 days
+2026-06-16 12:05:20 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:05:20 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:05:20 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:05:21 | INFO | babydoc.app | Response time: 1356ms
+2026-06-16 12:05:28 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 12:05:28 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=12, age=0 years 11 months 5 days
+2026-06-16 12:05:28 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:05:28 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:05:28 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:05:29 | INFO | babydoc.app | Response time: 1225ms
+2026-06-16 12:05:37 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 12:05:37 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=10, age=0 years 11 months 5 days
+2026-06-16 12:05:37 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:05:38 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:05:38 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:05:38 | INFO | babydoc.app | Response time: 1325ms
+2026-06-16 12:06:13 | DEBUG | babydoc.app | Baby context: cache hit
+2026-06-16 12:06:13 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=10, age=0 years 11 months 5 days
+2026-06-16 12:06:13 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:06:14 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:06:14 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:06:15 | INFO | babydoc.app | Response time: 1421ms
+2026-06-16 12:51:10 | DEBUG | babydoc.app | Baby context: cache miss, calling API
+2026-06-16 12:51:11 | INFO | babydoc.app | Baby context loaded — parent=saad@example.com, baby=None, id=11, age=5 years 11 months 5 days
+2026-06-16 12:51:11 | INFO | babydoc.app | Incoming query: 'mere baby kee age kya he?'
+2026-06-16 12:51:11 | DEBUG | babydoc.app | Retrieval score: 0.997 | top results: 5
+2026-06-16 12:51:11 | INFO | babydoc.app | Mode: data | Score: 0.997 | Baby context: yes
+2026-06-16 12:51:12 | INFO | babydoc.app | Response time: 1225ms
+2026-06-16 12:53:15 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 12:53:47 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 12:53:50 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 12:53:50 | INFO | babydoc.app | Momify API shutting down.
