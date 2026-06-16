@@ -27,10 +27,10 @@ def extract_user_id(token: str) -> str | None:
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
         user_id = (
-            payload.get("sub") or
+            payload.get("userId") or   # numeric user ID — check first
             payload.get("user_id") or
-            payload.get("userId") or
-            payload.get("id")
+            payload.get("id") or
+            payload.get("sub")         # email — last resort only
         )
         if not user_id:
             app_logger.warning("JWT decoded but no user_id found in payload")
@@ -145,7 +145,12 @@ def get_baby_context_from_token(token: str, baby_id: int | None = None) -> tuple
         return "", parent_id, None
 
     # Select the right baby
+    print(baby_id)
     if baby_id is not None:
+        print(f"DEBUG: looking for baby_id={baby_id!r} type={type(baby_id)}")
+        print(f"DEBUG: babies ids = {[b.get('id') for b in babies]}")
+        baby = next((b for b in babies if b.get("id") == baby_id), None)
+        print(f"DEBUG: matched baby = {baby}")
         baby = next((b for b in babies if b.get("id") == baby_id), None)
         if not baby:
             app_logger.warning(f"Baby ID {baby_id} not found for parent {parent_id}")

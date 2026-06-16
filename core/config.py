@@ -29,6 +29,5 @@ TOP_K           = 5
 HIGH_CONFIDENCE = 0.70
 LOW_CONFIDENCE  = 0.50
 DB_URL          = os.getenv("DB_URL")
-print(DB_URL)
 BABY_API_URL = os.environ.get("BABY_API_URL", "https://api.himomify.com")
 JWT_SECRET   = os.environ.get("JWT_SECRET", "")
