@@ -5167,3 +5167,6 @@ LINE 8:                 created_at
 2026-06-16 12:53:47 | INFO | babydoc.app | Momify API starting up...
 2026-06-16 12:53:50 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
 2026-06-16 12:53:50 | INFO | babydoc.app | Momify API shutting down.
+2026-06-16 12:54:15 | INFO | babydoc.app | Momify API starting up...
+2026-06-16 12:54:20 | INFO | babydoc.app | Loaded 265 Q&A pairs from data\ALLQA_cleaned_v3.json
+2026-06-16 13:03:46 | INFO | babydoc.app | Momify API shutting down.
