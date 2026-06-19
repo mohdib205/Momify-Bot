@@ -10,13 +10,14 @@ class Message(BaseModel):
 class ChatRequest(BaseModel):
     message: str
     history: list[Message] = []
-    baby_id: Optional[int] = None   # ← parent app sends selected baby ID
+    baby_id: Optional[int] = None
 
 
 class ChatResponse(BaseModel):
-    reply: str
-    mode:  str
-    score: float
+    reply:            str
+    mode:             str
+    score:            float
+    response_time_ms: int     # Java backend uses this for async ML observability write
 
 
 class FeedbackRequest(BaseModel):

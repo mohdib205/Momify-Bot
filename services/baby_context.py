@@ -27,10 +27,10 @@ def extract_user_id(token: str) -> str | None:
     try:
         payload = jwt.decode(token, JWT_SECRET, algorithms=["HS256"])
         user_id = (
-            payload.get("userId") or   # numeric user ID — check first
+            payload.get("userId") or
             payload.get("user_id") or
             payload.get("id") or
-            payload.get("sub")         # email — last resort only
+            payload.get("sub")
         )
         if not user_id:
             app_logger.warning("JWT decoded but no user_id found in payload")
@@ -52,14 +52,12 @@ def fetch_all_babies(token: str) -> list:
     cache_key = token[-20:]
     now = time.time()
 
-    # Cache hit
     if cache_key in _baby_cache:
         data, ts = _baby_cache[cache_key]
         if now - ts < _CACHE_TTL:
             app_logger.debug("Baby context: cache hit")
             return data
 
-    # Cache miss — call the API
     app_logger.debug("Baby context: cache miss, calling API")
     try:
         response = requests.get(
@@ -83,9 +81,6 @@ def fetch_all_babies(token: str) -> list:
 
 
 def fetch_baby_by_id(token: str, baby_id: int) -> dict | None:
-    """
-    Fetches a specific baby by ID from the babies list.
-    """
     babies = fetch_all_babies(token)
     for baby in babies:
         if baby.get("id") == baby_id:
@@ -127,14 +122,6 @@ def get_baby_context_from_token(token: str, baby_id: int | None = None) -> tuple
     Main entry point — called from main.py.
 
     Returns tuple: (baby_context, parent_id, baby_id_str)
-    - baby_context: string to inject into system prompt
-    - parent_id: extracted from JWT
-    - baby_id_str: the baby's ID as string (for logging)
-
-    If baby_id is provided → fetch that specific baby
-    If baby_id is None → fetch all babies:
-        - 1 baby → auto-select
-        - multiple → return empty context (parent app should have shown selector)
     """
     parent_id = extract_user_id(token)
     if not parent_id:
@@ -144,22 +131,14 @@ def get_baby_context_from_token(token: str, baby_id: int | None = None) -> tuple
     if not babies:
         return "", parent_id, None
 
-    # Select the right baby
-    print(baby_id)
     if baby_id is not None:
-        print(f"DEBUG: looking for baby_id={baby_id!r} type={type(baby_id)}")
-        print(f"DEBUG: babies ids = {[b.get('id') for b in babies]}")
-        baby = next((b for b in babies if b.get("id") == baby_id), None)
-        print(f"DEBUG: matched baby = {baby}")
         baby = next((b for b in babies if b.get("id") == baby_id), None)
         if not baby:
             app_logger.warning(f"Baby ID {baby_id} not found for parent {parent_id}")
             return "", parent_id, None
     elif len(babies) == 1:
-        # Only one baby — auto-select
         baby = babies[0]
     else:
-        # Multiple babies, no baby_id provided — parent app should send baby_id
         app_logger.warning(f"Parent {parent_id} has {len(babies)} babies but no baby_id sent")
         return "", parent_id, None
 

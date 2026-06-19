@@ -22,7 +22,7 @@ from dotenv import load_dotenv
  
 load_dotenv()
  
-GROQ_API_KEY    = os.getenv("GROQ_API_KEY")
+# GROQ_API_KEY    = os.getenv("GROQ_API_KEY")
 QA_FILE         = os.getenv("QA_FILE", r"data\ALLQA_cleaned_v3.json")
 MODEL           = "llama-3.3-70b-versatile"
 TOP_K           = 5
@@ -31,3 +31,11 @@ LOW_CONFIDENCE  = 0.50
 DB_URL          = os.getenv("DB_URL")
 BABY_API_URL = os.environ.get("BABY_API_URL", "https://api.himomify.com")
 JWT_SECRET   = os.environ.get("JWT_SECRET", "")
+import os
+ 
+GROQ_API_KEY_PRIMARY   = os.getenv("GROQ_API_KEY_PRIMARY")
+GROQ_API_KEY_SECONDARY = os.getenv("GROQ_API_KEY_SECONDARY")
+ 
+
+GROQ_API_KEY = GROQ_API_KEY_PRIMARY
+ 
