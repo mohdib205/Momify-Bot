@@ -6,7 +6,6 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-import psycopg2
 import os
 from datetime import datetime
 
@@ -44,6 +43,24 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
+from fastapi.middleware.cors import CORSMiddleware
+
+ALLOWED_ORIGINS = [
+    "https://himomify.com",
+    "https://www.himomify.com",
+    "https://api.himomify.com",
+    "https://bot.himomify.com",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Authorization", "Content-Type"],
+)
+
+
 @app.post("/chat", response_model=ChatResponse)
 @limiter.limit("20/minute")
 def chat(
@@ -63,7 +80,7 @@ def chat(
                 baby_id=req.baby_id
             )
 
-        reply, mode, score = get_response(
+        reply, mode, score, response_time_ms = get_response(
             message      = req.message,
             qa_data      = qa_data,
             history      = req.history,
@@ -71,7 +88,7 @@ def chat(
             parent_id    = parent_id,
             baby_id      = baby_id_str
         )
-        return ChatResponse(reply=reply, mode=mode, score=score)
+        return ChatResponse(reply=reply, mode=mode, score=score, response_time_ms=response_time_ms)
 
     except Exception as e:
         app_logger.error(f"Unhandled error in /chat: {e}")
@@ -80,12 +97,14 @@ def chat(
 
 @app.post("/submit_feedback", response_model=FeedbackResponse)
 def submit_feedback(req: FeedbackRequest):
-    db_url = os.environ.get("DB_URL")
-    if not db_url:
+    import psycopg2
+    from core.config import DB_URL
+
+    if not DB_URL:
         raise HTTPException(status_code=500, detail="DB_URL not configured")
 
     try:
-        conn = psycopg2.connect(db_url)
+        conn = psycopg2.connect(DB_URL)
         cur  = conn.cursor()
         cur.execute("""
             INSERT INTO doctor_feedback
@@ -126,3 +145,40 @@ def test_baby_context(authorization: Optional[str] = Header(default=None)):
         "auto_selected":     bid,
         "context_injected":  context
     }
+
+
+# ============================================================
+
+# A tiny admin endpoint to reset key rotation state without restarting
+# the app, once you've manually rotated/refreshed a Groq key.
+#
+# IMPORTANT: this is unauthenticated as written — at minimum, protect it
+# with a simple shared secret before exposing it publicly. Example below.
+# ============================================================
+
+import os
+from fastapi import HTTPException
+from services.key_manager import reset as reset_key_state, get_status
+
+ADMIN_SECRET = os.getenv("ADMIN_SECRET", "")  # set a real value in .env
+
+
+@app.post("/admin/reset-groq-keys")
+def admin_reset_groq_keys(secret: str):
+    if not ADMIN_SECRET or secret != ADMIN_SECRET:
+        raise HTTPException(status_code=403, detail="Invalid admin secret")
+    reset_key_state()
+    return {"status": "reset", "current_state": get_status()}
+
+
+@app.get("/admin/groq-key-status")
+def admin_groq_key_status(secret: str):
+    if not ADMIN_SECRET or secret != ADMIN_SECRET:
+        raise HTTPException(status_code=403, detail="Invalid admin secret")
+    return get_status()
+
+
+# Usage once a key is rotated:
+#   POST /admin/reset-groq-keys?secret=YOUR_ADMIN_SECRET
+# Check current state any time:
+#   GET /admin/groq-key-status?secret=YOUR_ADMIN_SECRET

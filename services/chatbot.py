@@ -5,19 +5,35 @@ Key change from original:
 - get_response() now accepts baby_context parameter
 - Baby context is injected into the system prompt so LLM
   knows baby details without asking the parent
+- RateLimitError handling, split into two cases:
+    TPM (tokens/requests per MINUTE) -> transient, self-heals in ~60s,
+        just show a "busy, try again" message, no key rotation
+    TPD/RPD (tokens/requests per DAY) -> real outage risk, switch to the
+        secondary Groq key. If BOTH keys are exhausted, return a distinct
+        "keys_exhausted" mode + SERVICE_UNAVAILABLE code and alert the admin
+        by email.
 """
 
 import re
 import time
-from groq import Groq
+from groq import Groq, RateLimitError
 
-from core.config import GROQ_API_KEY, MODEL, HIGH_CONFIDENCE, LOW_CONFIDENCE
+from core.config import GROQ_API_KEY_PRIMARY, MODEL, HIGH_CONFIDENCE, LOW_CONFIDENCE
 from core.prompts import STRICT_PROMPT, KNOWLEDGE_PROMPT
 from core.logger import app_logger, log_chat
+from core.scheduler import send_admin_alert_email
 from services.retriever import retrieve, build_context
 from services.safety import safety_check
+from services.token_tracker import log_token_usage
+from services.key_manager import (
+    get_active_key,
+    get_active_key_name,
+    mark_primary_dead,
+    mark_secondary_dead,
+    both_dead,
+)
 
-client = Groq(api_key=GROQ_API_KEY)
+client = Groq(api_key=GROQ_API_KEY_PRIMARY)
 
 
 # ── Prescription filter ───────────────────────────────────────────────────────
@@ -105,7 +121,6 @@ def _filter_prescription_response(response: str, query: str = "") -> str:
 
 # ── Language detection ────────────────────────────────────────────────────────
 
-# Only unambiguous Hinglish/Hindi words — no English words or common abbreviations
 _HINGLISH_MARKERS = [
     "mere", "mera", "meri", "hai", "hain", "kya", "karo", "karein",
     "aur", "nahi", "nhi", "baby ko", "batao", "btao",
@@ -118,13 +133,36 @@ _HINGLISH_MARKERS = [
 ]
 
 def _detect_hinglish(message: str) -> bool:
-    """
-    Returns True only if 2+ unambiguous Hinglish markers are found.
-    Threshold of 2 prevents a single stray word from flipping the language.
-    """
     msg_lower = message.lower()
     matches = sum(1 for marker in _HINGLISH_MARKERS if marker in msg_lower)
     return matches >= 2
+
+
+# ── Rate-limit helpers ─────────────────────────────────────────────────────────
+
+def _is_daily_limit_error(error_message: str) -> bool:
+    """
+    Distinguishes a DAILY limit hit (TPD/RPD) from a per-MINUTE hit (TPM/RPM).
+    Groq's error body includes the literal phrase, e.g.:
+      "...on tokens per day (TPD): Limit 100000, Used 99414..."
+    vs
+      "...on tokens per minute (TPM): Limit 12000, Used 11953..."
+    """
+    return bool(re.search(r"tokens per day|requests per day|\(TPD\)|\(RPD\)", error_message, re.IGNORECASE))
+
+
+def _call_groq(messages: list):
+    """Single place that actually calls Groq, using whichever key is currently active."""
+    client.api_key = get_active_key()
+    raw_response = client.chat.completions.with_raw_response.create(
+        model=MODEL,
+        messages=messages,
+        max_tokens=1024,
+        temperature=0.3
+    )
+    response  = raw_response.parse()
+    raw_reply = response.choices[0].message.content
+    return response, raw_reply
 
 
 # ── Main response function ────────────────────────────────────────────────────
@@ -136,7 +174,7 @@ def get_response(
     baby_context: str = "",
     parent_id:    str | None = None,
     baby_id:      str | None = None
-) -> tuple[str, str, float]:
+) -> tuple[str, str, float, int]:
 
     start_time = time.time()
     app_logger.info(f"Incoming query: {message!r}")
@@ -145,16 +183,17 @@ def get_response(
     safety_msg = safety_check(message)
     if safety_msg:
         app_logger.warning(f"Safety triggered for query: {message!r}")
+        response_time_ms = int((time.time() - start_time) * 1000)
         log_chat(
             query=message,
             reply=safety_msg,
             mode="emergency",
             score=0.0,
-            response_time_ms=(time.time() - start_time) * 1000
+            response_time_ms=response_time_ms
         )
-        return safety_msg, "emergency", 0.0
+        return safety_msg, "emergency", 0.0, response_time_ms
 
-    # 2. Detect language — injected as hard instruction into every user message
+    # 2. Detect language
     is_hinglish = _detect_hinglish(message)
     lang_instruction = (
         "LANGUAGE INSTRUCTION: The parent wrote in Hinglish. Reply in Hinglish only. Do NOT reply in English."
@@ -202,28 +241,112 @@ def get_response(
         messages.append({"role": msg.role, "content": msg.content})
     messages.append({"role": "user", "content": user_msg})
 
-    # 7. Call Groq
+    # 7. Call Groq — with two-key fallback on daily-limit errors
     try:
-        response = client.chat.completions.create(
-            model=MODEL,
-            messages=messages,
-            max_tokens=1024,
-            temperature=0.3
-        )
-        raw_reply = response.choices[0].message.content
+        response, raw_reply = _call_groq(messages)
+
+    except RateLimitError as e:
+        error_text = str(e)
+        response_time_ms = int((time.time() - start_time) * 1000)
+
+        # ── Case A: daily limit (TPD/RPD) — this is the real outage risk ──
+        if _is_daily_limit_error(error_text):
+            failed_key_name = get_active_key_name()
+            if failed_key_name == "primary":
+                mark_primary_dead()
+            else:
+                mark_secondary_dead()
+
+            if both_dead():
+                app_logger.critical(f"BOTH GROQ KEYS EXHAUSTED — manual intervention required: {e}")
+                try:
+                    send_admin_alert_email(
+                        subject="🚨 Momify: Both Groq keys exhausted (daily limit)"
+                    )
+                except Exception as mail_err:
+                    app_logger.error(f"Failed to send admin alert email: {mail_err}")
+
+                log_chat(
+                    query=message,
+                    reply="SERVICE_UNAVAILABLE",
+                    mode="keys_exhausted",
+                    score=0.0,
+                    response_time_ms=response_time_ms,
+                    parent_id=parent_id,
+                    baby_id=baby_id
+                )
+                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
+
+            # One key just died, the other is still fresh — retry once
+            try:
+                response, raw_reply = _call_groq(messages)
+            except RateLimitError as e2:
+                # Secondary failed too, immediately — treat as both dead
+                mark_secondary_dead()
+                app_logger.critical(f"BOTH GROQ KEYS EXHAUSTED — manual intervention required: {e2}")
+                try:
+                    send_admin_alert_email(
+                        subject="🚨 Momify: Both Groq keys exhausted (daily limit)"
+                    )
+                except Exception as mail_err:
+                    app_logger.error(f"Failed to send admin alert email: {mail_err}")
+
+                response_time_ms = int((time.time() - start_time) * 1000)
+                log_chat(
+                    query=message,
+                    reply="SERVICE_UNAVAILABLE",
+                    mode="keys_exhausted",
+                    score=0.0,
+                    response_time_ms=response_time_ms,
+                    parent_id=parent_id,
+                    baby_id=baby_id
+                )
+                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
+
+        # ── Case B: per-minute limit (TPM/RPM) — transient, self-heals in ~60s ──
+        else:
+            app_logger.warning(f"Rate limit hit (TPM): {e}")
+            fallback_reply = (
+                "Hamara assistant abhi thoda busy hai. Kripya kuch second baad phir try karein 🙏"
+                if is_hinglish else
+                "Our assistant is a little busy right now. Please try again in a few seconds 🙏"
+            )
+            log_chat(
+                query=message,
+                reply=fallback_reply,
+                mode="rate_limited",
+                score=0.0,
+                response_time_ms=response_time_ms,
+                parent_id=parent_id,
+                baby_id=baby_id
+            )
+            return fallback_reply, "rate_limited", 0.0, response_time_ms
+
     except Exception as e:
         app_logger.error(f"Groq API error: {e}")
         raise
 
-    # 8. Prescription filter
+    # 8. Log token usage
+    usage = response.usage
+    log_token_usage(
+        model=MODEL,
+        prompt_tokens=usage.prompt_tokens,
+        completion_tokens=usage.completion_tokens,
+        total_tokens=usage.total_tokens,
+        mode=mode,
+        parent_id=parent_id,
+        baby_id=baby_id,
+    )
+
+    # 9. Prescription filter
     reply = _filter_prescription_response(raw_reply, message)
     if reply != raw_reply:
         app_logger.warning("Prescription filter triggered.")
 
-    response_time_ms = (time.time() - start_time) * 1000
-    app_logger.info(f"Response time: {response_time_ms:.0f}ms")
+    response_time_ms = int((time.time() - start_time) * 1000)
+    app_logger.info(f"Response time: {response_time_ms}ms")
 
-    # 9. Log
+    # 10. Log chat
     log_chat(
         query=message,
         reply=reply,
@@ -234,4 +357,4 @@ def get_response(
         baby_id=baby_id
     )
 
-    return reply, mode, round(best_score, 3)
+    return reply, mode, round(best_score, 3), response_time_ms

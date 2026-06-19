@@ -3,9 +3,6 @@ import json
 import os
 from datetime import datetime
 
-import psycopg2
-from core.config import DB_URL
-
 LOG_DIR = "logs"
 os.makedirs(LOG_DIR, exist_ok=True)
 
@@ -48,42 +45,6 @@ def _log_to_file(record: dict):
         app_logger.error(f"File log failed: {e}")
 
 
-def _log_to_db(record: dict):
-    try:
-        conn = psycopg2.connect(DB_URL)
-        cur = conn.cursor()
-
-        cur.execute("""
-            INSERT INTO chat_logs (
-                query,
-                reply,
-                mode,
-                score,
-                response_time_ms,
-                parent_id,
-                baby_id,
-                created_at
-            )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """, (
-            record["query"],
-            record["reply"],
-            record["mode"],
-            record["score"],
-            record["response_time_ms"],
-            record["parent_id"],
-            record["baby_id"],
-            record["timestamp"]
-        ))
-
-        conn.commit()
-        cur.close()
-        conn.close()
-
-    except Exception as e:
-        app_logger.error(f"DB log failed: {e}")
-
-
 def log_chat(
     query: str,
     reply: str,
@@ -94,7 +55,7 @@ def log_chat(
     baby_id: str | None = None
 ):
     record = {
-        "timestamp": datetime.utcnow(),
+        "timestamp": datetime.utcnow().isoformat(),
         "query": query,
         "reply": reply,
         "mode": mode,
@@ -104,9 +65,4 @@ def log_chat(
         "baby_id": baby_id
     }
 
-    _log_to_file({
-        **record,
-        "timestamp": record["timestamp"].isoformat()
-    })
-
-    _log_to_db(record)
+    _log_to_file(record)
