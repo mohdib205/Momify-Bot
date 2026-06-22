@@ -168,12 +168,13 @@ def _call_groq(messages: list):
 # ── Main response function ────────────────────────────────────────────────────
 
 def get_response(
-    message:      str,
-    qa_data:      list,
-    history:      list,
-    baby_context: str = "",
-    parent_id:    str | None = None,
-    baby_id:      str | None = None
+    message:       str,
+    qa_data:       list,
+    history:       list,
+    baby_context:  str = "",
+    parent_id:     str | None = None,
+    baby_id:       str | None = None,
+    query_subject: str = "baby"
 ) -> tuple[str, str, float, int]:
 
     start_time = time.time()
@@ -189,7 +190,8 @@ def get_response(
             reply=safety_msg,
             mode="emergency",
             score=0.0,
-            response_time_ms=response_time_ms
+            response_time_ms=response_time_ms,
+            query_subject=query_subject
         )
         return safety_msg, "emergency", 0.0, response_time_ms
 
@@ -233,7 +235,15 @@ def get_response(
     if baby_context:
         system = system + f"\n\n{baby_context}"
 
-    app_logger.info(f"Mode: {mode} | Score: {best_score:.3f} | Baby context: {'yes' if baby_context else 'no'}")
+    # 5b. If this question is about the mother, not the baby, tell the model so —
+    # otherwise it defaults to assuming every question is about the baby's health.
+    if query_subject == "mother":
+        system = system + (
+            "\n\nIMPORTANT: This question is about the parent (mother), not the baby. "
+            "Answer accordingly — do not assume the question is about the baby's health."
+        )
+
+    app_logger.info(f"Mode: {mode} | Score: {best_score:.3f} | Baby context: {'yes' if baby_context else 'no'} | Query subject: {query_subject}")
 
     # 6. Build messages with history
     messages = [{"role": "system", "content": system}]
@@ -273,7 +283,8 @@ def get_response(
                     score=0.0,
                     response_time_ms=response_time_ms,
                     parent_id=parent_id,
-                    baby_id=baby_id
+                    baby_id=baby_id,
+                    query_subject=query_subject
                 )
                 return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
 
@@ -299,7 +310,8 @@ def get_response(
                     score=0.0,
                     response_time_ms=response_time_ms,
                     parent_id=parent_id,
-                    baby_id=baby_id
+                    baby_id=baby_id,
+                    query_subject=query_subject
                 )
                 return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
 
@@ -318,7 +330,8 @@ def get_response(
                 score=0.0,
                 response_time_ms=response_time_ms,
                 parent_id=parent_id,
-                baby_id=baby_id
+                baby_id=baby_id,
+                query_subject=query_subject
             )
             return fallback_reply, "rate_limited", 0.0, response_time_ms
 
@@ -354,7 +367,8 @@ def get_response(
         score=round(best_score, 3),
         response_time_ms=response_time_ms,
         parent_id=parent_id,
-        baby_id=baby_id
+        baby_id=baby_id,
+        query_subject=query_subject
     )
 
     return reply, mode, round(best_score, 3), response_time_ms
