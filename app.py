@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # API_URL = "http://72.61.173.6:8010"
-API_URL = "https://bot.himomify.com"
-# API_URL = "http://127.0.0.1:8000/"
+# API_URL = "https://bot.himomify.com"
+API_URL = "http://127.0.0.1:8000/"
 # API_URL = "http://187.127.146.155:8010/"
 
 
@@ -128,6 +128,21 @@ div[data-testid="stChatMessage"] {
 .badge-weak     { background: #fff3e0; color: #e65100; }
 .badge-fallback { background: #fce4ec; color: #c62828; }
 .badge-error    { background: #f5f5f5; color: #757575; }
+
+/* ── Query subject badge ── */
+.subject-badge {
+    display: inline-block;
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.12rem 0.5rem;
+    border-radius: 20px;
+    margin-top: 0.25rem;
+    margin-left: 0.4rem;
+    text-transform: uppercase;
+}
+.badge-subject-baby   { background: #e3f2fd; color: #1565c0; }
+.badge-subject-mother { background: #f3e5f5; color: #6a1b9a; }
 
 /* ── Feedback card ── */
 .feedback-card {
@@ -425,6 +440,29 @@ button[kind="header"] {
 
 
 # ════════════════════════════════════════
+# Query subject toggle (Baby / Mother) — drives query_subject sent to /chat
+# ════════════════════════════════════════
+
+if "query_subject" not in st.session_state:
+    st.session_state.query_subject = "baby"
+
+st.markdown(
+    '<div style="font-size:0.78rem;color:#a07090;font-weight:600;'
+    'letter-spacing:0.07em;text-transform:uppercase;margin-bottom:0.4rem">'
+    'This question is about</div>',
+    unsafe_allow_html=True
+)
+subject_choice = st.radio(
+    "",
+    ["Baby", "Mother"],
+    horizontal=True,
+    label_visibility="collapsed",
+    key="subject_toggle"
+)
+st.session_state.query_subject = subject_choice.lower()
+
+
+# ════════════════════════════════════════
 # Chat history
 # ════════════════════════════════════════
 
@@ -438,14 +476,19 @@ for idx, msg in enumerate(st.session_state.messages):
         with st.chat_message("assistant", avatar="🌸"):
             st.markdown(msg["content"])
 
-            # Mode badge
+            # Mode badge + query subject badge
             if "meta" in msg:
                 mode  = msg["meta"].get("mode", "")
                 score = msg["meta"].get("score", 0.0)
                 badge = {"data":"badge-data","weak":"badge-weak",
                          "fallback":"badge-fallback"}.get(mode, "badge-error")
+
+                subject = msg["meta"].get("query_subject", "baby")
+                subject_badge_class = "badge-subject-mother" if subject == "mother" else "badge-subject-baby"
+
                 st.markdown(
-                    f'<span class="mode-badge {badge}">{mode} {score:.2f}</span>',
+                    f'<span class="mode-badge {badge}">{mode} {score:.2f}</span>'
+                    f'<span class="subject-badge {subject_badge_class}">{subject}</span>',
                     unsafe_allow_html=True
                 )
 
@@ -538,37 +581,47 @@ if user_input:
         st.markdown(user_input)
     st.session_state.messages.append({"role": "user", "content": user_input})
 
+    current_subject = st.session_state.query_subject
+
     with st.chat_message("assistant", avatar="🌸"):
         with st.spinner(""):
             try:
                 response = requests.post(
                     f"{API_URL}/chat",
-                    json={"message": user_input, "history": st.session_state.history},
+                    json={
+                        "message": user_input,
+                        "history": st.session_state.history,
+                        "query_subject": current_subject
+                    },
                     timeout=30
                 )
-                data  = response.json()
-                reply = data.get("reply", "Something went wrong.")
-                mode  = data.get("mode",  "fallback")
-                score = data.get("score", 0.0)
+                data          = response.json()
+                reply         = data.get("reply", "Something went wrong.")
+                mode          = data.get("mode",  "fallback")
+                score         = data.get("score", 0.0)
+                query_subject = data.get("query_subject", current_subject)
             except requests.exceptions.ConnectionError:
-                reply = "Unable to reach the server. Please try again in a moment."
-                mode  = "error"
-                score = 0.0
+                reply         = "Unable to reach the server. Please try again in a moment."
+                mode          = "error"
+                score         = 0.0
+                query_subject = current_subject
 
         st.markdown(reply)
 
         if mode != "error":
             badge = {"data":"badge-data","weak":"badge-weak",
                      "fallback":"badge-fallback"}.get(mode, "badge-error")
+            subject_badge_class = "badge-subject-mother" if query_subject == "mother" else "badge-subject-baby"
             st.markdown(
-                f'<span class="mode-badge {badge}">{mode} {score:.2f}</span>',
+                f'<span class="mode-badge {badge}">{mode} {score:.2f}</span>'
+                f'<span class="subject-badge {subject_badge_class}">{query_subject}</span>',
                 unsafe_allow_html=True
             )
 
     st.session_state.messages.append({
         "role":    "assistant",
         "content": reply,
-        "meta":    {"mode": mode, "score": score}
+        "meta":    {"mode": mode, "score": score, "query_subject": query_subject}
     })
     st.session_state.history.append({"role": "user",      "content": user_input})
     st.session_state.history.append({"role": "assistant", "content": reply})

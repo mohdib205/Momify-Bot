@@ -52,7 +52,8 @@ def log_chat(
     score: float,
     response_time_ms: float,
     parent_id: str | None = None,
-    baby_id: str | None = None
+    baby_id: str | None = None,
+    query_subject: str = "baby"
 ):
     record = {
         "timestamp": datetime.utcnow().isoformat(),
@@ -62,7 +63,8 @@ def log_chat(
         "score": score,
         "response_time_ms": round(response_time_ms, 2),
         "parent_id": parent_id,
-        "baby_id": baby_id
+        "baby_id": baby_id,
+        "query_subject": query_subject
     }
 
     _log_to_file(record)

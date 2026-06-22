@@ -75,20 +75,30 @@ def chat(
 
         if authorization and authorization.startswith("Bearer "):
             token = authorization.removeprefix("Bearer ").strip()
-            baby_context, parent_id, baby_id_str = get_baby_context_from_token(
-                token,
-                baby_id=req.baby_id
-            )
+            parent_id = extract_user_id(token)
+
+            if req.query_subject != "mother":
+                baby_context, parent_id, baby_id_str = get_baby_context_from_token(
+                    token,
+                    baby_id=req.baby_id
+                )
 
         reply, mode, score, response_time_ms = get_response(
-            message      = req.message,
-            qa_data      = qa_data,
-            history      = req.history,
-            baby_context = baby_context,
-            parent_id    = parent_id,
-            baby_id      = baby_id_str
+            message       = req.message,
+            qa_data       = qa_data,
+            history       = req.history,
+            baby_context  = baby_context,
+            parent_id     = parent_id,
+            baby_id       = baby_id_str,
+            query_subject = req.query_subject
         )
-        return ChatResponse(reply=reply, mode=mode, score=score, response_time_ms=response_time_ms)
+        return ChatResponse(
+            reply=reply,
+            mode=mode,
+            score=score,
+            response_time_ms=response_time_ms,
+            query_subject=req.query_subject
+        )
 
     except Exception as e:
         app_logger.error(f"Unhandled error in /chat: {e}")
