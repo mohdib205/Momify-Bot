@@ -15,11 +15,14 @@ class ChatRequest(BaseModel):
 
 
 class ChatResponse(BaseModel):
-    reply:            str
-    mode:             str
-    score:            float
-    response_time_ms: int     # Java backend uses this for async ML observability write
-    query_subject:    str     # "baby" or "mother" — echoed back so Java can log it alongside mode/score
+    reply:             str
+    mode:              str
+    score:             float
+    response_time_ms:  int     # Java backend uses this for async ML observability write
+    query_subject:     str     # "baby" or "mother" — echoed back so Java can log it alongside mode/score
+    prompt_tokens:     int = 0
+    completion_tokens: int = 0
+    total_tokens:      int = 0
 
 
 class FeedbackRequest(BaseModel):

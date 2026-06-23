@@ -175,7 +175,11 @@ def get_response(
     parent_id:     str | None = None,
     baby_id:       str | None = None,
     query_subject: str = "baby"
-) -> tuple[str, str, float, int]:
+) -> tuple[str, str, float, int, int, int, int]:
+    # Returns: (reply, mode, score, response_time_ms,
+    #           prompt_tokens, completion_tokens, total_tokens)
+    # Token fields are 0 whenever no Groq call actually happened
+    # (safety/emergency short-circuit, rate-limited, keys-exhausted).
 
     start_time = time.time()
     app_logger.info(f"Incoming query: {message!r}")
@@ -193,7 +197,7 @@ def get_response(
             response_time_ms=response_time_ms,
             query_subject=query_subject
         )
-        return safety_msg, "emergency", 0.0, response_time_ms
+        return safety_msg, "emergency", 0.0, response_time_ms, 0, 0, 0
 
     # 2. Detect language
     is_hinglish = _detect_hinglish(message)
@@ -286,7 +290,7 @@ def get_response(
                     baby_id=baby_id,
                     query_subject=query_subject
                 )
-                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
+                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms, 0, 0, 0
 
             # One key just died, the other is still fresh — retry once
             try:
@@ -313,7 +317,7 @@ def get_response(
                     baby_id=baby_id,
                     query_subject=query_subject
                 )
-                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms
+                return "SERVICE_UNAVAILABLE", "keys_exhausted", 0.0, response_time_ms, 0, 0, 0
 
         # ── Case B: per-minute limit (TPM/RPM) — transient, self-heals in ~60s ──
         else:
@@ -333,7 +337,7 @@ def get_response(
                 baby_id=baby_id,
                 query_subject=query_subject
             )
-            return fallback_reply, "rate_limited", 0.0, response_time_ms
+            return fallback_reply, "rate_limited", 0.0, response_time_ms, 0, 0, 0
 
     except Exception as e:
         app_logger.error(f"Groq API error: {e}")
@@ -371,4 +375,7 @@ def get_response(
         query_subject=query_subject
     )
 
-    return reply, mode, round(best_score, 3), response_time_ms
+    return (
+        reply, mode, round(best_score, 3), response_time_ms,
+        usage.prompt_tokens, usage.completion_tokens, usage.total_tokens
+    )

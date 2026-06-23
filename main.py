@@ -83,7 +83,7 @@ def chat(
                     baby_id=req.baby_id
                 )
 
-        reply, mode, score, response_time_ms = get_response(
+        reply, mode, score, response_time_ms, prompt_tokens, completion_tokens, total_tokens = get_response(
             message       = req.message,
             qa_data       = qa_data,
             history       = req.history,
@@ -97,7 +97,10 @@ def chat(
             mode=mode,
             score=score,
             response_time_ms=response_time_ms,
-            query_subject=req.query_subject
+            query_subject=req.query_subject,
+            prompt_tokens=prompt_tokens,
+            completion_tokens=completion_tokens,
+            total_tokens=total_tokens
         )
 
     except Exception as e:
