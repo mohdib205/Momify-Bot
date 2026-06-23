@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 import psycopg2
 import os
+import json
+import base64
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -11,6 +13,178 @@ load_dotenv()
 API_URL = "https://bot.himomify.com"
 # API_URL = "http://127.0.0.1:8000/"
 # API_URL = "http://187.127.146.155:8010/"
+
+
+def extract_parent_id_from_token(token: str):
+    """
+    TEST-BRANCH ONLY — mirrors services/baby_context.py's extract_user_id()
+    field-priority order (Phase 8 fix: userId checked before sub, since sub
+    holds an email in this backend's JWTs, not a numeric id). This is a
+    local, unverified decode purely so the test app can log/display the
+    actual parent identity instead of the raw token string — it does NOT
+    verify the signature, and must never be used for real auth decisions.
+    """
+    if not token:
+        return None
+    try:
+        payload_segment = token.split(".")[1]
+        padding = "=" * (-len(payload_segment) % 4)
+        decoded = base64.urlsafe_b64decode(payload_segment + padding)
+        claims = json.loads(decoded)
+        return (
+            claims.get("userId") or
+            claims.get("user_id") or
+            claims.get("id") or
+            claims.get("sub")  # email — last resort only, same order as Phase 8's fix
+        )
+    except Exception:
+        return None
+
+
+# ════════════════════════════════════════════════════════════════
+# TEST-BRANCH ONLY — reply-chain workflow simulation
+# Mirrors the schemas sketched in Integration Guide (2) / Phase 12:
+#   community_posts  -> stand-in for Java's MySQL reply-tree table
+#   ml_chat_logs      -> stand-in for Java's Postgres ML-observability log,
+#                        including the history_context addition
+# Not part of the real production app. Safe to strip out entirely if this
+# branch's code is ever merged back.
+# ════════════════════════════════════════════════════════════════
+
+DB_URL = os.environ.get("DB_URL", "")
+
+
+def _get_conn():
+    return psycopg2.connect(DB_URL)
+
+
+def init_test_tables():
+    """Creates the two test tables if they don't exist. Safe to call every run."""
+    if not DB_URL:
+        return
+    try:
+        conn = _get_conn()
+        cur = conn.cursor()
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS community_posts (
+                id              SERIAL PRIMARY KEY,
+                parent_id       VARCHAR,
+                baby_id         VARCHAR,
+                query_subject   VARCHAR(10) DEFAULT 'baby',
+                role            VARCHAR(20) NOT NULL,
+                content         TEXT NOT NULL,
+                reply_to_id     INTEGER REFERENCES community_posts(id),
+                created_at      TIMESTAMP DEFAULT NOW()
+            );
+        """)
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS ml_chat_logs (
+                id                 SERIAL PRIMARY KEY,
+                parent_id          VARCHAR,
+                baby_id            VARCHAR,
+                query              TEXT,
+                raw_bot_response   TEXT,
+                mode               VARCHAR(20),
+                score              FLOAT,
+                response_time_ms   INT,
+                query_subject      VARCHAR(10),
+                history_context    JSONB,
+                prompt_tokens      INT,
+                completion_tokens  INT,
+                total_tokens       INT,
+                created_at         TIMESTAMP DEFAULT NOW()
+            );
+        """)
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        st.sidebar.error(f"Test DB init failed: {e}")
+
+
+def save_post(parent_id, baby_id, query_subject, role, content, reply_to_id=None):
+    """Inserts one row into community_posts, returns its new id (or None on failure)."""
+    if not DB_URL:
+        return None
+    try:
+        conn = _get_conn()
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO community_posts (parent_id, baby_id, query_subject, role, content, reply_to_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            RETURNING id
+        """, (parent_id, baby_id, query_subject, role, content, reply_to_id))
+        new_id = cur.fetchone()[0]
+        conn.commit()
+        cur.close()
+        conn.close()
+        return new_id
+    except Exception as e:
+        st.error(f"Failed to save post: {e}")
+        return None
+
+
+def resolve_chain(reply_to_id):
+    """
+    Walks reply_to_id backward from the given post, collecting the chain
+    in chronological (oldest-first) order. Returns a list of {role, content}
+    dicts ready to drop straight into the /chat `history` field.
+    """
+    if not DB_URL or reply_to_id is None:
+        return []
+    try:
+        conn = _get_conn()
+        cur = conn.cursor()
+        chain = []
+        current_id = reply_to_id
+        while current_id is not None:
+            cur.execute(
+                "SELECT id, role, content, reply_to_id FROM community_posts WHERE id = %s",
+                (current_id,)
+            )
+            row = cur.fetchone()
+            if not row:
+                break
+            _, role, content, parent_reply_id = row
+            chain.append({"role": role, "content": content})
+            current_id = parent_reply_id
+        cur.close()
+        conn.close()
+        chain.reverse()  # was newest-first from walking backward, flip to chronological
+        return chain
+    except Exception as e:
+        st.error(f"Failed to resolve chain: {e}")
+        return []
+
+
+def log_ml_chat(parent_id, baby_id, query, raw_bot_response, mode, score,
+                 response_time_ms, query_subject, history_context,
+                 prompt_tokens=None, completion_tokens=None, total_tokens=None):
+    """Mirrors the ml_chat_logs write Java would do, async, on its side."""
+    if not DB_URL:
+        return
+    try:
+        conn = _get_conn()
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO ml_chat_logs
+            (parent_id, baby_id, query, raw_bot_response, mode, score,
+             response_time_ms, query_subject, history_context,
+             prompt_tokens, completion_tokens, total_tokens)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            parent_id, baby_id, query, raw_bot_response, mode, score,
+            response_time_ms, query_subject, json.dumps(history_context),
+            prompt_tokens, completion_tokens, total_tokens
+        ))
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        st.error(f"Failed to log ml_chat_logs row: {e}")
+
+
+init_test_tables()
 
 
 
@@ -462,6 +636,50 @@ subject_choice = st.radio(
 st.session_state.query_subject = subject_choice.lower()
 
 
+# ════════════════════════════════════════════════════════════════
+# TEST-BRANCH ONLY — token / baby_id / reply-to inputs
+# Lets the tester simulate the real auth + multi-baby + reply-chain
+# scenario without needing a real parent app frontend.
+# ════════════════════════════════════════════════════════════════
+
+with st.expander("🧪 Test controls (token, baby_id, reply-to)", expanded=True):
+    test_token = st.text_input(
+        "Bearer token (optional)",
+        value=st.session_state.get("test_token", ""),
+        placeholder="paste JWT here, or leave blank to test with no auth"
+    )
+    st.session_state.test_token = test_token
+
+    test_baby_id = st.text_input(
+        "baby_id (only needed if parent has multiple babies)",
+        value=st.session_state.get("test_baby_id", ""),
+        placeholder="e.g. 7 — leave blank for single-baby auto-resolve"
+    )
+    st.session_state.test_baby_id = test_baby_id
+
+    # Build the reply-to options from this session's posted messages.
+    # Only assistant messages are valid reply targets — replying to a user's
+    # own question isn't a real product scenario (per Integration Guide 2:
+    # parents reply to answers, not to questions).
+    if "post_ids" not in st.session_state:
+        st.session_state.post_ids = []  # list of (post_id, role, short_label)
+
+    reply_label_to_id = {
+        f"#{pid} (bot): {label}": pid
+        for pid, role, label in st.session_state.post_ids
+        if role == "assistant"
+    }
+    fresh_option = "— none, this is a fresh question —"
+    reply_options = [fresh_option] + list(reply_label_to_id.keys())
+    reply_choice = st.selectbox(
+        "Reply to a previous bot answer in this test session",
+        reply_options,
+        key="reply_to_selector"
+    )
+
+    st.session_state.reply_to_post_id = reply_label_to_id.get(reply_choice)  # None if fresh_option chosen
+
+
 # ════════════════════════════════════════
 # Chat history
 # ════════════════════════════════════════
@@ -582,29 +800,52 @@ if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     current_subject = st.session_state.query_subject
+    reply_to_id      = st.session_state.get("reply_to_post_id")
+
+    # ── TEST-BRANCH: resolve the reply chain from the DB instead of
+    # using a flat running history — this is what Java would do by
+    # walking reply_to_id backward, per Integration Guide (2).
+    resolved_history = resolve_chain(reply_to_id) if reply_to_id else []
+
+    token_input = st.session_state.get("test_token", "").strip()
+    baby_id_input = st.session_state.get("test_baby_id", "").strip()
+
+    headers = {}
+    if token_input:
+        headers["Authorization"] = f"Bearer {token_input}"
+
+    payload = {
+        "message": user_input,
+        "history": resolved_history,
+        "query_subject": current_subject
+    }
+    if baby_id_input:
+        try:
+            payload["baby_id"] = int(baby_id_input)
+        except ValueError:
+            st.warning("baby_id must be a number — ignoring it for this request.")
 
     with st.chat_message("assistant", avatar="🌸"):
         with st.spinner(""):
             try:
                 response = requests.post(
                     f"{API_URL}/chat",
-                    json={
-                        "message": user_input,
-                        "history": st.session_state.history,
-                        "query_subject": current_subject
-                    },
+                    json=payload,
+                    headers=headers,
                     timeout=30
                 )
-                data          = response.json()
-                reply         = data.get("reply", "Something went wrong.")
-                mode          = data.get("mode",  "fallback")
-                score         = data.get("score", 0.0)
-                query_subject = data.get("query_subject", current_subject)
+                data              = response.json()
+                reply             = data.get("reply", "Something went wrong.")
+                mode              = data.get("mode",  "fallback")
+                score             = data.get("score", 0.0)
+                response_time_ms  = data.get("response_time_ms", 0)
+                query_subject     = data.get("query_subject", current_subject)
             except requests.exceptions.ConnectionError:
-                reply         = "Unable to reach the server. Please try again in a moment."
-                mode          = "error"
-                score         = 0.0
-                query_subject = current_subject
+                reply             = "Unable to reach the server. Please try again in a moment."
+                mode              = "error"
+                score             = 0.0
+                response_time_ms  = 0
+                query_subject     = current_subject
 
         st.markdown(reply)
 
@@ -618,11 +859,62 @@ if user_input:
                 unsafe_allow_html=True
             )
 
+            # ── TEST-BRANCH: show the exact chain length / approx size sent,
+            # so you can watch cost grow as chains get deeper.
+            chain_pairs = len(resolved_history) // 2
+            approx_chars = sum(len(m["content"]) for m in resolved_history) + len(user_input)
+            st.caption(f"🧪 chain depth: {chain_pairs} prior pair(s) · ~{approx_chars} chars sent this call")
+
+    # ── TEST-BRANCH: persist this exchange as two posts (user + assistant)
+    # in community_posts, and log the turn to ml_chat_logs, mirroring what
+    # Java would do — lets you inspect both tables' real row shapes after.
+    parent_id_for_log = extract_parent_id_from_token(token_input) if token_input else None
+    baby_id_for_log    = baby_id_input if baby_id_input else None
+
+    user_post_id = save_post(
+        parent_id=parent_id_for_log,
+        baby_id=baby_id_for_log,
+        query_subject=current_subject,
+        role="user",
+        content=user_input,
+        reply_to_id=reply_to_id
+    )
+    assistant_post_id = save_post(
+        parent_id=parent_id_for_log,
+        baby_id=baby_id_for_log,
+        query_subject=current_subject,
+        role="assistant",
+        content=reply,
+        reply_to_id=user_post_id
+    )
+
+    if user_post_id is not None:
+        short_label = (user_input[:30] + "…") if len(user_input) > 30 else user_input
+        st.session_state.post_ids.append((user_post_id, "user", short_label))
+    if assistant_post_id is not None:
+        short_label = (reply[:30] + "…") if len(reply) > 30 else reply
+        st.session_state.post_ids.append((assistant_post_id, "assistant", short_label))
+
+    log_ml_chat(
+        parent_id=parent_id_for_log,
+        baby_id=baby_id_for_log,
+        query=user_input,
+        raw_bot_response=reply,
+        mode=mode,
+        score=score,
+        response_time_ms=response_time_ms,
+        query_subject=query_subject,
+        history_context=resolved_history
+    )
+
     st.session_state.messages.append({
         "role":    "assistant",
         "content": reply,
         "meta":    {"mode": mode, "score": score, "query_subject": query_subject}
     })
-    st.session_state.history.append({"role": "user",      "content": user_input})
-    st.session_state.history.append({"role": "assistant", "content": reply})
+    # Note: flat st.session_state.history is no longer used for the /chat call —
+    # the chain sent as `history` is resolved fresh from community_posts based
+    # on the "reply to" selection above. Reset the reply-to selector after send
+    # so the next message defaults to "fresh question" unless explicitly chosen.
+    st.session_state.reply_to_post_id = None
     st.rerun()
