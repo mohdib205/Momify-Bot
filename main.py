@@ -23,6 +23,8 @@ from services.retriever import load_qa
 from services.chatbot import get_response
 from services.baby_context import get_baby_context_from_token, extract_user_id, fetch_all_babies
 
+from core.scheduler import start_scheduler 
+
 qa_data = []
 
 limiter = Limiter(key_func=get_remote_address)
@@ -34,6 +36,7 @@ async def lifespan(app: FastAPI):
     app_logger.info("Momify API starting up...")
     qa_data = load_qa(QA_FILE)
     app_logger.info(f"Loaded {len(qa_data)} Q&A pairs from {QA_FILE}")
+    start_scheduler()
     yield
     app_logger.info("Momify API shutting down.")
 
