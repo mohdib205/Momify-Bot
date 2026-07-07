@@ -183,7 +183,7 @@ def start_scheduler():
     """
     scheduler.add_job(
         send_daily_report,
-        trigger=CronTrigger(hour=23, minute=59),
+        trigger=CronTrigger(hour=15, minute=48),
         id="daily_token_report",
         replace_existing=True,
     )

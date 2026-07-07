@@ -158,7 +158,9 @@ def _call_groq(messages: list):
         model=MODEL,
         messages=messages,
         max_tokens=1024,
-        temperature=0.3
+        temperature=0.3,
+        reasoning_effort="none", 
+        reasoning_format="hidden"
     )
     response  = raw_response.parse()
     raw_reply = response.choices[0].message.content
