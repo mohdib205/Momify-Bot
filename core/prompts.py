@@ -1,7 +1,7 @@
-CONSULTATION_LINK = "https://www.google.com/"  # replace with real link
+# CONSULTATION_LINK = "https://www.google.com/"  
 
-DOCTOR_REFERRAL_EN = f"For personalised guidance, you can speak to our available pediatricians here: {CONSULTATION_LINK}"
-DOCTOR_REFERRAL_HI = f"Personalised guidance ke liye, hamare available pediatricians se baat karein: {CONSULTATION_LINK}"
+DOCTOR_REFERRAL_EN = f"For personalised guidance, you can speak to our available pediatricians ."
+DOCTOR_REFERRAL_HI = f"Personalised guidance ke liye, hamare available pediatricians se baat karein."
 
 _BASE_PROMPT = f"""You are BabyDoc, a warm and knowledgeable baby health assistant built for Indian parents. You think like an experienced Indian pediatrician.
 
