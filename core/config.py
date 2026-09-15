@@ -24,7 +24,7 @@ load_dotenv()
  
 # GROQ_API_KEY    = os.getenv("GROQ_API_KEY")
 QA_FILE         = os.getenv("QA_FILE", r"data\ALLQA_cleaned_v3.json")
-MODEL = "qwen/qwen3.6-27b"
+MODEL = "qwen/qwen3.8-27b" 
 TOP_K           = 5
 HIGH_CONFIDENCE = 0.70
 LOW_CONFIDENCE  = 0.50
